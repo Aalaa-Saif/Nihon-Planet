@@ -1,0 +1,40 @@
+/*CSS*/
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(240, 146, 162);
+    overflow-x: hidden;
+    transition: all 0.9s;
+
+    }
+
+.sidebar .close {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    color:white;
+    transition: 0.3s;
+}
+
+ul li{
+    list-style-type: none;
+    font-size: 25px;
+    padding-top: 15px;
+}
+ul li a{
+    color: black;
+}
+ul li a:hover{
+    text-decoration: none;
+    color: darkslateblue;
+}
+
+.adminName{
+    padding-left:55px;
+}
+

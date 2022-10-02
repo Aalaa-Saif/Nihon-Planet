@@ -1,0 +1,67 @@
+/*CSS*/
+
+.body{
+    background-color: rgb(173, 173, 173);
+}
+
+.nav{
+    background-color: rgb(238, 172, 183);
+    font-size: 20px;
+}
+.nav ul li{
+    padding-left: 10px;
+}
+
+.nav a{
+    color: darkred;
+    font-size: 20px;
+}
+.nav a:hover{
+    color: black;
+}
+
+
+.image_upload > input
+{
+    display: none;
+}
+
+.image_upload img
+{    width: 80px;
+    cursor: pointer;
+    color: var(--white);
+}
+
+.userfloat{
+    padding-left: 60px;
+}
+
+
+.bigSpace{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    transition: 0.3s;
+  }
+.close span{
+    font-size: 80px;
+    color: white;
+}
+
+.sizefontpost{
+    font-size: 25px;
+}
