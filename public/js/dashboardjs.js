@@ -10,9 +10,15 @@ $(document).ready(function(){
     })
 
     $('.close').click(function(){
-        var id = $(this).data('id');
         $('.bigSpace').css("display","none");
     });
 
+    $('.to_Comment').click(function(){
+        $(this).click('.kkk');
+    });
+
+
 });
+
+
 

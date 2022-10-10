@@ -14,7 +14,6 @@ class userpost extends Model
     protected $table = "userposts";
 
     protected $fillable = [
-        'id',
         'user_id',
         'text',
         'created_at',
@@ -34,11 +33,7 @@ class userpost extends Model
     }
 
     public function comments(){
-        return $this->hasMany('App\Models\usercomment');
-    }
-
-    public function trys(){
-        return $this->hasMany('App\Models\trying');
+        return $this->hasMany('App\Models\usercomment')->orderBy('created_at','ASC');
     }
 
 }

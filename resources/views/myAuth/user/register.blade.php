@@ -8,7 +8,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card bg-dark text-light">
                 <div class="card-header text-center"><b>{{ __('messages.register') }}</b></div>
 
                 <div class="card-body">
@@ -16,7 +16,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('messages.name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label">{{ __('messages.name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" autofocus>
@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('messages.email') }}</label>
+                            <label for="email" class="col-md-4 col-form-label">{{ __('messages.email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email">
@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('messages.password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label">{{ __('messages.password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password">
@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('messages.confirmPassword') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label">{{ __('messages.confirmPassword') }}</label>
 
                             <div class="col-md-6">
                                 <input type="password" class="form-control" name="password_confirmation">
@@ -51,13 +51,12 @@
                             </div>
                         </div>
 
-                        <div class="row-md-3">
-                            <label for="photo" class="col-md-4 col-form-label text-md-end">{{ __('messages.photo') }}</label>
+                        <div class="row mb-3">
+                            <label for="photo" class="col-md-4 col-form-label">{{ __('messages.photo') }}</label>
                             <div class="col-md-6">
                                 <input id="photo" type="file" class="form-control" name="photo">
                                 <small id="photo_error" class="small-text text-danger font-weight-bold" role="alert"></small>
                             </div>
-
                         </div>
 
                         <div class="row mb-0">
@@ -80,6 +79,13 @@
     <script>
         $(document).on('click','#regbtn',function(e){
             e.preventDefault();
+
+            $('#name_error').text('');
+            $('#email_error').text('');
+            $('#password_error').text('');
+            $('#password_confirmation_error').text('');
+            $('#photo_error').text('');
+
 
             var regData = new FormData($('#regid')[0]);
             $.ajax({

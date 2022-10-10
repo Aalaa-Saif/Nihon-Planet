@@ -1,11 +1,12 @@
 <?php
 
+use App\Models\User;
 use App\Models\userpost;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTryingsTable extends Migration
+class CreateUsercommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +15,11 @@ class CreateTryingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tryings', function (Blueprint $table) {
+        Schema::create('usercomments', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class);
             $table->foreignIdFor(userpost::class);
-            $table->string('write');
+            $table->string('comment');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateTryingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tryings');
+        Schema::dropIfExists('usercomments');
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class authRequest extends FormRequest
+class userReqisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,9 @@ class authRequest extends FormRequest
         return [
             'name' => 'required|max:100',
             'email' => 'required|unique:users,email',
-            'password' => 'required|min:6',
+            'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required|same:password|min:6',
+            'photo' => 'required',
 
 
         ];
@@ -43,6 +44,7 @@ class authRequest extends FormRequest
             'password.min' => __('messages.minpassword'),
             'password_confirmation.required' => __('messages.confirmpassword'),
             'password_confirmation.same' => __('messages.confirmpasswordsame'),
+            'photo.required' =>  __('messages.photorequired'),
         ];
     }
 }

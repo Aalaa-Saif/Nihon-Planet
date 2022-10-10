@@ -14,6 +14,7 @@ class usercomment extends Model
     protected $table = "usercomments";
 
     protected $fillable = [
+        'user_id',
         'userpost_id',
         'comment',
         'created_at',
@@ -26,5 +27,9 @@ class usercomment extends Model
 
     public function user_comment(){
         return $this->belongsTo('App\Models\userpost');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
     }
 }

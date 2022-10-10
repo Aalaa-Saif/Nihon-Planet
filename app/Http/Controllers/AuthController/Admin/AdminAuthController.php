@@ -17,8 +17,9 @@ class AdminAuthController extends Controller
     use photoTrait;
 
     //Dashboard of the Admin
-    public function Admin_dashboard(){
+    public function admin_dashboard(admin $adm){
         $admin = Auth::guard('admin')->user();
+       // Auth::guard('admin')->loginUsingId(1);
         return view('layouts.admindashboard-app',['admin'=>$admin]);
     }
 

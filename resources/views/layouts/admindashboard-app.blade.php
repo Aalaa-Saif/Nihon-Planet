@@ -104,6 +104,7 @@
      <div id="sidebtn-id">
         <button class="btn navbar-btn navbar-toggler navbar-light bg-light opendash" type="button"> <span class="navbar-toggler-icon"></span></button>
         <h3 class="navbar-text text-center"><a href="{{ url('admin dashboard') }}" class="text-dark"><u>Admin Dashboard</u></a></h3>
+        <a href="{{ url('post') }}">To user post</a>
 
         @yield('content')
 

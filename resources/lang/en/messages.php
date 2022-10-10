@@ -31,8 +31,9 @@ return [
     "regjsonsuccess" => "A new Otaku member Added Seccessfully",
     "regpassrequired" => "Password required",
     "confirmpassword" => "Must confirm the password correctly",
-    "confirmpasswordsame" => "Password not match",
+    "confirmpasswordsame" => "Password does not match",
     "minpassword" => "Password minimam 6",
+    "photorequired" => "Must choose a photo",
 
     //"dir" =>"ltr",
 

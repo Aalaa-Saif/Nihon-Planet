@@ -11,19 +11,25 @@
                     <form method="POST" action="{{ route('login_check') }}">
                         @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('messages.email') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="text-center">
+                                <label for="email" class="col-form-label">{{ __('messages.email') }}</label>
+                            </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6 offset-md-3">
                                 <input id="email" type="email" class="form-control" name="email" autofocus>
                                     <small class="invalid-feedback" role="alert"></small>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('messages.password') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="text-center">
+                                <label for="password" class="col-form-label">{{ __('messages.password') }}</label>
+                            </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6 offset-md-3">
                                 <input id="password" type="password" class="form-control" name="password">
                                     <small class="invalid-feedback" role="alert"></small>
                             </div>
@@ -48,7 +54,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="row mt-1">
+                        <div class="row mt-2">
                             <div class="col-md-8 offset-md-4">
                                 <a href="{{ url('otaku register') }}">
                                     {{ __('messages.o_registerbtn') }}

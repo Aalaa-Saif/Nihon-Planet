@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TryController;
 use App\Http\Controllers\Main\CityController;
 use App\Http\Controllers\Main\FoodController;
 use App\Http\Controllers\Main\NihonController;
@@ -29,7 +28,7 @@ Route::group(['namespace' => 'Main'], function() {
     Route::group(['middleware'=>'auth:admin'],function(){
 
         // Admin Auth Controller //
-        Route::get('admin dashboard',[AdminAuthController::class,'Admin_dashboard'])->name('admin_dashboard');
+        Route::get('admin dashboard',[AdminAuthController::class,'admin_dashboard'])->name('admin_dashboard');
         Route::get('ad create',[AdminAuthController::class,'ad_create']); //For add Advertisement
         Route::post('ad store',[AdminAuthController::class,'ad_store'])->name('ad_store');
 
@@ -93,6 +92,9 @@ Route::group(['namespace' => 'Main'], function() {
 ##############################################################################
 
 
+
+
+
 Route::group(['namespace' => 'AuthController'], function() {
     ############################ Admin #############################
     Route::group(['namespace' => 'User'], function() {
@@ -122,7 +124,7 @@ Route::group(['namespace' => 'AuthController'], function() {
             Route::post('otaku store',[RegisterController::class,'store'])->name('otaku_store');
 
             // User Login Controller //
-            Route::get('otaku login',[LoginController::class,'login'])->name('login');
+            Route::get('otaku login',[LoginController::class,'login'])->name('otaku_login');
             Route::post('otaku check',[LoginController::class,'login_check'])->name('login_check');
 
             // User Logout Controller //
@@ -135,6 +137,7 @@ Route::group(['namespace' => 'AuthController'], function() {
                 Route::get('post',[UserAuthController::class,'post'])->name('post');
                 Route::post('post store',[UserAuthController::class,'post_store'])->name('post_store');
                 Route::post('comment store',[UserAuthController::class,'comment_store'])->name('comment_store');
+
             });
 
         });

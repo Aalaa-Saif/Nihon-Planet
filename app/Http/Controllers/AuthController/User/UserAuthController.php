@@ -54,16 +54,18 @@ class UserAuthController extends Controller
     // Store Comments for Users
     public function comment_store(Request $request){
          //validator
-
-        $find = userpost::with('user')->find($request->id);
+         $comment_id = Auth::user()->id;
+        //$find = userpost::with('user')->find($request->id);
             usercomment::create([
-                'userpost_id' => $find->id,
-                'comment' => request('comment'),
+                'user_id'=>$comment_id,
+                'userpost_id' => $request->id,
+                'comment' => $request->comment,
              ]);
 
              return response()->json([
                 "status"=>true,
-                "id"=>$request->id
+                "id"=>$request->id,
+                "data"=>$request->comment
             ]);
     }
 
@@ -74,15 +76,15 @@ class UserAuthController extends Controller
         $posts = userpost::all()->where('user_id',Auth::user()->id);
 
         return view('userdashboard.profile',compact('posts'),['user'=> $user]);
-    }
 
+    }
 
     // View Posts
     public function post(){
-        //name of Relationship
-    $user = userpost::with('user')->orderBy('text', 'asc')->get();
-    return view('userdashboard.post',compact('user'));
+        $user = Auth::user();
+                        // 'user' is the name of Relationship in userpost Modal
+        $posts = userpost::with('comments.user')->orderBy('text', 'asc')->get();
+        return view('userdashboard.post',compact('posts'),['user'=> $user]);
     }
-
 
 }

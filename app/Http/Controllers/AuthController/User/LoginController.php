@@ -22,6 +22,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         //Auth::guard('')
         if(Auth::attempt($credentials)){
+            //if( Auth::guard('admin')->loginUsingId(1)){
             return redirect()->intended('otaku profile');
         }
         return redirect()->back()->onlyInput('email');

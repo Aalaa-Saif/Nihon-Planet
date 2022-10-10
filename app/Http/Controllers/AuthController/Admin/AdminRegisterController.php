@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\AuthController\Admin;
 
+use App\Models\admin;
 use App\Traits\photoTrait;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AdminRegisterController extends Controller
 {

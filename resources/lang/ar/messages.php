@@ -33,6 +33,7 @@ return [
     "confirmpassword" => "يجب تأكيد كلمة السر بشكل صحيح",
     "minpassword" => "يجب أن لا تقل كلمة المرور عن 6 احرف/ارقام/رموز",
     "confirmpasswordsame" => "كلمة السر غير متطابقة",
+    "photorequired" => "يجب رفع صورة",
     "regjsonsuccess" => "تم تسجيل عضو اوتاكو جديد بنجاح",
 
     ////Post////
