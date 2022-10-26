@@ -13,8 +13,6 @@
 
 
 
-            <div id="posuccess" class="alert alert-success" style="display:none;"></div>
-
                 <form method="POST" action="" id="postid" enctype="multipart/form-data">
                     @csrf
                     <div class="card bg-light">
@@ -42,7 +40,7 @@
 
 
                 @foreach ($posts as $post)
-                    <div class="card my-4 bg-light ll{{ $post->id }}">
+                    <div class="card my-4 bg-light">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-8 mb-2">
@@ -54,16 +52,23 @@
 
                             <p class="sizefontpost">{{ $post->text }}</p>
 
-                            <p>{{ $post->id }}</p>
-
                             @foreach ($post->userpostimgs as $img)
-                                <img class="img-fluid my-1" src="{{ asset('img/userpostimg/'.$img->image) }}" style="width:300px; height:300px;">
+                                <img class="img-fluid my-1 multiImg" src="{{ asset('img/userpostimg/'.$img->image) }}" style="width:300px; height:300px;" data-id={{ $img->id }}>
+                                <div id="bigSpaceImg-{{ $img->id }}" class="bigSpaceImg">
+
+                                    <button class="close text-light" type="button">
+                                        <span>&times</span>
+                                    </button>
+
+                                    <img class="modal-content img-fluid mx-auto d-block" id="Image-{{ $img->id }}" style="width:600px; height:600px;">
+                                </div>
                             @endforeach
 
                             <div class="card-footer">
                                 <form method="POST" action="">
                                     @csrf
                                     <input class="form-control to_Comment" placeholder="Click here to comment" data-id={{ $post->id }}>
+                                    <p class="blockqoute offset-md-9">{{ $post->created_at }}</p>
                                 </form>
                             </div>
 
@@ -84,13 +89,12 @@
                                                 @foreach ($post->comments as $comm)
                                                 <img class="float-left img-fluid rounded-circle" src="{{ asset('img/userimg/'.$comm->user->photo) }}" style="width:40px; height:40px;">
                                                 <b><h5 class="my-2 userfloat text-dark">{{ $comm->user->name }}</h5></b>
-                                                <div class="col-md-8 offset-md-1 mb-2">
+                                                <div class="col-md-7 ml-5 mb-2">
                                                     <p class="text-dark bg-light border rounded comment_p">{{ $comm->comment }}</p>
                                                 </div>
                                                 @endforeach
                                             </div>
                                         </div>
-
 
                                 </div>
 
@@ -125,9 +129,7 @@
                 cache:false,
                 success:function(data){
                     if(data.status==true){
-                        var div = document.getElementById('posuccess');
-                    div.innerHTML=data.msg;
-                    $('#posuccess').show();
+
                     location.reload(true);
                     }
                 },

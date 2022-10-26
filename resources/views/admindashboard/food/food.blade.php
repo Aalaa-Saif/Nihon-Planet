@@ -1,6 +1,6 @@
 @extends('layouts.admindashboard-app')
 @section('content')
-    <div class="container">
+    <div class="container div_reload">
 
         <span><a href="{{ url('#') }}" class="btn btn-primary" role="button">Food edit</a></span>
 
@@ -48,18 +48,19 @@
 @stop
 
 
+
 @section('script')
     <script>
         $(document).on('click','.food_delete',function(e){
             e.preventDefault();
 
-            var foodData = $(this).attr('food_id');
+            var formData = $(this).attr('food_id');
             $.ajax({
                 method:"post",
                 url:"{{ route('food_delete') }}",
                 data:{
                     "_token":"{{ csrf_token() }}",
-                    "id":foodData
+                    "id":formData
                 },
 
                 success:function(data){

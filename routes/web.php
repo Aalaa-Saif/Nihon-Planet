@@ -5,6 +5,7 @@ use App\Http\Controllers\Main\CityController;
 use App\Http\Controllers\Main\FoodController;
 use App\Http\Controllers\Main\NihonController;
 use App\Http\Controllers\Main\ClothsController;
+use App\Http\Controllers\Main\AdvertisementController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\AuthController\User\LoginController;
 use App\Http\Controllers\AuthController\User\LogoutController;
@@ -29,12 +30,18 @@ Route::group(['namespace' => 'Main'], function() {
 
         // Admin Auth Controller //
         Route::get('admin dashboard',[AdminAuthController::class,'admin_dashboard'])->name('admin_dashboard');
-        Route::get('ad create',[AdminAuthController::class,'ad_create']); //For add Advertisement
-        Route::post('ad store',[AdminAuthController::class,'ad_store'])->name('ad_store');
+
+         // Advertisement Controller (Admin) //
+        Route::get('ad create',[AdvertisementController::class,'create']); //For add Advertisement
+        Route::post('ad store',[AdvertisementController::class,'store'])->name('ad_store');
+        Route::get('ad all',[AdvertisementController::class,'adAll']);
+        Route::get('ad edit/{id}',[AdvertisementController::class,'edit'])->name('ad_edit');
+        Route::post('ad update',[AdvertisementController::class,'update'])->name('ad_update');
+        Route::post('ad delete',[AdvertisementController::class,'delete'])->name('ad_delete');
 
 
         // Food Controller (Admin) //
-        Route::get('food create',[FoodController::class,'foodCreate']);
+        Route::get('food create',[FoodController::class,'create']);
         Route::post('food store',[FoodController::class,'store'])->name('food_store');
         Route::get('food all',[FoodController::class,'foodAll']);
         Route::get('food edit/{food_id}',[FoodController::class,'edit'])->name('food_edit');
@@ -65,9 +72,12 @@ Route::group(['namespace' => 'Main'], function() {
         Route::get('nihon all',[NihonController::class,'nihonAll']);
         Route::get('nihon create',[NihonController::class,'nihonCreate']);
         Route::get('nihon store',[NihonController::class,'nihonStore'])->name('nihon_store');
+        Route::get('nihon edit/{id}',[NihonController::class,'edit'])->name('nihon_edit');
+        Route::post('nihon update',[NihonController::class,'update'])->name('nihon_update');
+        Route::post('nihon delete',[NihonController::class,'delete'])->name('nihon_delete');
     });
 
-    // Blade -> Multi Languages (en,ar)
+    // Blade -> Languages (en,ar)
     Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],
     function(){
 
@@ -76,15 +86,15 @@ Route::group(['namespace' => 'Main'], function() {
         Route::get('get nihon',[NihonController::class,'getNihon'])->name('get_nihon');
 
         // City Controller //
-        Route::get('city',[CityController::class,'city']);
+        Route::get('city',[CityController::class,'city'])->name('city');
         Route::get('get city',[CityController::class,'getCity'])->name('get_city');
 
         // Cloths Controller //
-        Route::get('cloths',[ClothsController::class,'cloths']);
+        Route::get('cloths',[ClothsController::class,'cloths'])->name('cloths');
         Route::get('get cloths',[ClothsController::class,'getCloths'])->name('get_cloths');
 
         // Food Controller //
-        Route::get('food',[FoodController::class,'food']);
+        Route::get('food',[FoodController::class,'food'])->name('food');
         Route::get('get food',[FoodController::class,'getFood'])->name('get_food');
 
     });
@@ -112,12 +122,14 @@ Route::group(['namespace' => 'AuthController'], function() {
     ############################ End Admin #############################
 
 
-
     ############################## User ###############################
     Route::group(['namespace' => 'User'], function() {
-        // Blade -> Multi Languages (en,ar) //
+        // Blade -> Languages (en,ar) //
         Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],
         function(){
+
+            // Admin Login Controller //
+            Route::get('admin login',[AdminLoginController::class,'login'])->name('admin_login');
 
             // User Register Controller //
             Route::get('otaku register',[RegisterController::class,'register'])->name('otaku_register');;

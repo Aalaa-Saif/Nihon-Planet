@@ -1,7 +1,7 @@
 @extends('layouts.admindashboard-app')
 @section('content')
 
-<div class="container">
+<div class="container div_reload">
 
     <div id="nisuccess" class="alert alert-success col-md-6 offset-md-3 font-weight-bold" style="display:none">
     </div>
@@ -93,9 +93,13 @@
                 success:function(data){
                     if(data.status==true){
                         var div = document.getElementById('nisuccess');
-                    div.innerHTML=data.msg;
-                    $('#nisuccess').show();
+                        div.innerHTML=data.msg;
+                        $('#nisuccess').show();
+                        setTimeout( function() {
+                            $(".div_reload").load(location.href + " .div_reload");
+                        }, 800 );
                     }
+
                 },
                 error:function(reject){
                     var ajaxresponse = $.parseJSON(reject.responseText);

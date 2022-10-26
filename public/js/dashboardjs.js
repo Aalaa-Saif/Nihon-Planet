@@ -9,14 +9,27 @@ $(document).ready(function(){
 
     })
 
+
     $('.close').click(function(){
         $('.bigSpace').css("display","none");
     });
 
-    $('.to_Comment').click(function(){
-        $(this).click('.kkk');
-    });
 
+
+
+    $('.multiImg').on('click',function(){
+        var id = $(this).data('id');
+        $('#bigSpaceImg-'+id).css('display','block');
+
+        var img = $(this).attr('src');
+
+        $('#Image-'+id).attr('src',img);
+
+    })
+
+    $('.close').click(function(){
+        $('.bigSpaceImg').css("display","none");
+    });
 
 });
 

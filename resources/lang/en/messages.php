@@ -16,8 +16,8 @@ return [
     ////Register form////
     "register" => "Register for Otaku",
     "name" => "Name",
-    "email" => "Email",
-    "password" => "Password",
+    "email" => "Email", //also for admin register form
+    "password" => "Password", //also for admin register form
     "confirmPassword" => "Confirm Password",
     "login" => "Login for Otaku",
     "registerbtn" => "Register",
@@ -49,4 +49,12 @@ return [
     "o_logout" => "Logout",
     "o_login" => "Login",
     "o_registerbtn" => "or Create new User",
+
+    ////O Register
+    "a_login_register" =>"Admin Login",
+    "a_login" => "Login",
+
+    "nihon_modal" => "Nihon(Japan) Country",
+
+    "showPassword" =>"show password",
 ];

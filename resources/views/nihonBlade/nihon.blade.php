@@ -1,42 +1,23 @@
 @extends('layouts.main-app')
 @section('content')
-<div class="container nihon-container my-5">
+<div class="container mt-3">
     <div class="row nihon">
 
+        <button type="button" class="btn btn-light text-dark nihon_model_btn offset-md-5">
+            <b>{{ __('messages.nihon_modal') }}</b>
+        </button>
 
+        <div class="col-md-6 nihon-container bg-dark offset-md-3 py-4 my-5">
+
+            @foreach ($nihon as $nihon)
+               <h3>{{ $nihon->name }}</h3>
+                <hr class="bg-success">
+               <h4>{{ $nihon->info }}</h4>
+            @endforeach
+
+        </div>
     </div>
 
 </div>
 
 @endsection
-
-
-@section('script')
-    <script>
-        $(document).ready(function(){
-            $.ajax({
-                method:"get",
-                url:"{{ route('get_nihon') }}",
-                success:function(response){
-
-                    $('.nihon').html("");
-
-                    $.each(response.gn, function(key, value) {
-                        $('.nihon').append('<div class="col-md-8 my-2">\
-                            <h1>'+value.name+'</h1>\
-                            <br>\
-                            <h3 class="mx-2">'+value.info+'</h3>\
-                        </div>');
-
-                        console.log(response.gn);
-                    });
-
-                },
-                error:function(reject){
-
-                }
-            });
-        })
-    </script>
-@endsection
-

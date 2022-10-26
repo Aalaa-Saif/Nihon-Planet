@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Main;
 
 use File;
 use App\Models\city;
-use App\Models\nihon;
 use App\Models\cityimg;
 use LaravelLocalization;
 use Illuminate\Http\Request;
@@ -18,18 +17,22 @@ class CityController extends Controller
 
 
     ################################ City Blade ################################
-    public function getCity(){
-        $gc = city::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->get();
-        return response()->json(["gc"=>$gc]);
-    }
 
     public function cityCreate(){
         $admin = Auth::guard('admin')->user();
         return view('admindashboard.city.create',['admin'=>$admin]);
     }
 
-    public function city(){
-        return view('nihonBlade.city');
+    public function city(Request $request){
+       // $gci = city::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info')->orderBy('created_at','ASC')->get();
+        $search = $request->input('search');
+        $posts = city::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info')->orderBy('created_at','ASC')
+        ->where('name_en', 'LIKE', "%{$search}%")
+        ->orWhere('info_en', 'LIKE', "%{$search}%")
+        ->orWhere('name_ar', 'LIKE', "%{$search}%")
+        ->orWhere('info_ar', 'LIKE', "%{$search}%")
+        ->get();
+        return view('nihonBlade.city',compact('posts'));
     }
     ################################ End ################################
 

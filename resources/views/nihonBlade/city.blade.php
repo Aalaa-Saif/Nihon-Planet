@@ -1,75 +1,39 @@
 @extends('layouts.main-app')
 @section('content')
     <div class="container my-4">
-        <!-- Images used to open the lightbox -->
-        <div class="row">
-          <div class="column">
-            <img src="{{ asset('img/ni.jpg') }}" onclick="openModal();currentSlide(1)" style="width:200px;" class="hover-shadow">
-          </div>
-          <div class="column">
-            <img src="{{ asset('img/my Hero.jpg') }}" onclick="openModal();currentSlide(2)" style="width:200px;" class="hover-shadow">
-          </div>
-          <div class="column">
-            <img src="{{ asset('img/ni.jpg') }}" onclick="openModal();currentSlide(3)" style="width:200px;" class="hover-shadow">
-          </div>
-          <div class="column">
-            <img src="{{ asset('img/my Hero.jpg') }}" onclick="openModal();currentSlide(4)" style="width:200px;" class="hover-shadow">
-          </div>
-        </div>
 
-        <!-- The Modal/Lightbox -->
-        <div id="myModal" class="modal">
-          <span class="close cursor" onclick="closeModal()">&times;</span>
-          <div class="modal-content">
+        @foreach ($posts as $city)
+            <div class="row my-2 py-2 px-2 bg-light thumbnail">
+                <div class="col-md-12">
+                    <h5>{{ $city->name }}</h5>
+                    <p>{{ $city->info }}</p>
+                </div>
+                <div class="img_scroll">
+                    @foreach ($city->images as $img)
+                        <img href="" src="{{ asset('img/city/'.$img->image) }}" class="border border-dark show_image" style="width:200px; height:200px;" data-id={{ $img->id }}>
 
-            <div class="mySlides">
-              <div class="numbertext">1 / 4</div>
-              <img src="{{ asset('img/ni_wide.jpg') }}" style="width:100%">
+                        <div id="bigSpace-{{ $img->id }}" class="bigSpace">
+                            <!-- Close Button -->
+                            <button class="close" type="button">
+                                <span class="close_span">&times</span>
+                            </button>
+
+                            <!-- Modal Content (Image) -->
+                            <img class="modal-content img-fluid mx-auto d-block" id="img01-{{ $img->id }}" style="width:600px; height:600px;">
+
+
+                            <div class="img_scroll offset-md-2 mt-1">
+                                @foreach ($city->images as $img)
+                                   <img src="{{ asset('img/city/'.$img->image) }}" class="border border-dark show_image2" style="width:50px; height:50px;" data-id={{ $img->id }}>
+                                @endforeach
+                            </div>
+
+
+                        </div>
+                    @endforeach
+
+                </div>
             </div>
-
-            <div class="mySlides">
-              <div class="numbertext">2 / 4</div>
-              <img src="{{ asset('img/my Hero_wide.jpg') }}" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-              <div class="numbertext">3 / 4</div>
-              <img src="{{ asset('img/ni_wide.jpg') }}" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-              <div class="numbertext">4 / 4</div>
-              <img src="{{ asset('img/my Hero_wide.jpg') }}" style="width:100%">
-            </div>
-
-            <!-- Next/previous controls -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-            <!-- Caption text -->
-            <div class="caption-container">
-              <p id="caption"></p>
-            </div>
-
-            <!-- Thumbnail image controls -->
-            <div class="column">
-              <img class="demo" src="{{ asset('img/ni.jpg') }}" onclick="currentSlide(1)" alt="Nature">
-            </div>
-
-            <div class="column">
-              <img class="demo" src="{{ asset('img/my Hero.jpg') }}" onclick="currentSlide(2)"  alt="Snow">
-            </div>
-
-            <div class="column">
-              <img class="demo" src="{{ asset('img/ni.jpg') }}" onclick="currentSlide(3)"  alt="Mountains">
-            </div>
-
-            <div class="column">
-              <img class="demo" src="{{ asset('img/my Hero.jpg') }}" onclick="currentSlide(4)"  alt="Lights">
-            </div>
-          </div>
-        </div>
+        @endforeach
     </div>
-
 @endsection
-

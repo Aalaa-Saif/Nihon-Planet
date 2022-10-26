@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AuthController\User;
 
 use Session;
 use messages;
+use App\Models\ad;
 use App\Models\User;
 use App\Models\userpost;
 use App\Traits\photoTrait;
@@ -73,7 +74,7 @@ class UserAuthController extends Controller
     // View Profile
     public function profile(){
         $user = Auth::user();
-        $posts = userpost::all()->where('user_id',Auth::user()->id);
+        $posts = userpost::orderBy('created_at','DESC')->get()->where('user_id',Auth::user()->id);
 
         return view('userdashboard.profile',compact('posts'),['user'=> $user]);
 
@@ -82,9 +83,13 @@ class UserAuthController extends Controller
     // View Posts
     public function post(){
         $user = Auth::user();
+
+        //Fetch Advertisement
+       $ad = ad::all();
+
                         // 'user' is the name of Relationship in userpost Modal
-        $posts = userpost::with('comments.user')->orderBy('text', 'asc')->get();
-        return view('userdashboard.post',compact('posts'),['user'=> $user]);
+        $posts = userpost::with('comments.user')->orderBy('created_at','DESC')->get();
+        return view('userdashboard.post',compact('posts','ad'),['user'=> $user]);
     }
 
 }

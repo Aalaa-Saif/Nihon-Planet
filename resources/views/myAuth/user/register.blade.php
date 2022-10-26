@@ -12,7 +12,7 @@
                 <div class="card-header text-center"><b>{{ __('messages.register') }}</b></div>
 
                 <div class="card-body">
-                    <form method="POST" action="" id="regid" enctype="multipart/form-data">
+                    <form method="POST" autocomplete="off" action="" id="regid" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
@@ -34,11 +34,13 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label">{{ __('messages.password') }}</label>
+                            <label for="myPass" class="col-md-4 col-form-label">{{ __('messages.password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
+                                <input id="myPass" type="password" class="form-control" name="password">
+                                <input type="checkbox" id="checkPass" class="col-md-1"><spam class="text-light checktext">{{ __('messages.showPassword') }}</spam>
                                     <small id="password_error" class="small-text text-danger font-weight-bold" role="alert"></small>
+
                             </div>
                         </div>
 
@@ -46,7 +48,8 @@
                             <label for="password-confirm" class="col-md-4 col-form-label">{{ __('messages.confirmPassword') }}</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                                <input type="checkbox" id="checkPassConf" class="col-md-1"><spam class="text-light checktext">{{ __('messages.showPassword') }}</spam>
                                 <small id="password_confirmation_error" class="small-text text-danger font-weight-bold" role="alert"></small>
                             </div>
                         </div>

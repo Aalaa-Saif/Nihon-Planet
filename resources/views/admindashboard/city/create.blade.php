@@ -1,7 +1,7 @@
 @extends('layouts.admindashboard-app')
 @section('content')
 
-<div class="container">
+<div class="container div_reload">
 
     <div id="cisuccess" class="alert alert-success col-md-6 offset-md-3 font-weight-bold" style="display:none"></div>
 
@@ -96,8 +96,11 @@
                         var div = document.getElementById('cisuccess');
                     div.innerHTML=data.msg;
                     $('#cisuccess').show();
-                    location.reload(true);
+                    setTimeout( function() {
+                        $(".div_reload").load(location.href + " .div_reload");
+                     }, 800 );
                     }
+
                 },
                 error:function(reject){
                     var ajaxresponse = $.parseJSON(reject.responseText);

@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card bg-dark text-light">
-                <div class="card-header text-center border-bottom"><b>Create Nihon Foods</b></div>
+                <div class="card-header text-center border-bottom"><b>Create Nihon Cloths</b></div>
 
                 <div class="card-body">
                     <form method="POST" action="" id="clothid" enctype="multipart/form-data">

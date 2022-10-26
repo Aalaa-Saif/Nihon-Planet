@@ -8,9 +8,8 @@
                 <div class="card-header text-center"><b>{{ __('messages.login') }}</b></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login_check') }}">
+                    <form method="POST" autocomplete="off" action="{{ route('login_check') }}">
                         @csrf
-
 
                             <div class="text-center">
                                 <label for="email" class="col-form-label">{{ __('messages.email') }}</label>
@@ -25,25 +24,14 @@
 
 
                             <div class="text-center">
-                                <label for="password" class="col-form-label">{{ __('messages.password') }}</label>
+                                <label for="myPass" class="col-form-label">{{ __('messages.password') }}</label>
                             </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-3">
-                                <input id="password" type="password" class="form-control" name="password">
+                                <input id="myPass" type="password" class="form-control" name="password">
+                                <input type="checkbox" id="checkPass" class="col-md-1"><spam class="text-light checktext">{{ __('messages.showPassword') }}</spam>
                                     <small class="invalid-feedback" role="alert"></small>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
                             </div>
                         </div>
 

@@ -96,11 +96,9 @@
 
                     if(data.status==true){
                         var div = document.getElementById('fosuccess');
-                    div.innerHTML=data.msg;
-                    $('#fosuccess').show();
-                    }
-
-                    $('.formclass').load('.formclass');
+                        div.innerHTML=data.msg;
+                        $('#fosuccess').show();
+                        }
                 },
                 error:function(reject){
                     var ajaxresponse = $.parseJSON(reject.responseText);
@@ -109,7 +107,6 @@
                     });
                 }
             });
-            //location.reload(true);
         });
     </script>
 @endsection

@@ -13,17 +13,17 @@ return [
     |
     */
 
-    ////Register form////
+    ////O Register form////
     "register" => "تسجيل دخول الأوتاكو",
     "name" => "الإسم",
-    "email" => "البريد الالكتروني",
-    "password" => "كلمة السر",
+    "email" => "البريد الالكتروني", //also for admin register form
+    "password" => "كلمة السر", //also for admin register form
     "confirmPassword" => "إعادة كلمة السر",
     "login" => "دخول الاوتاكو",
     "registerbtn" => "تسجيل",
     "photo" => "ارفع صورة",
 
-    ////Reqister validation////
+    ////O Reqister validation////
     "regname" => "يجب ادخال الاسم",
     "emailrequired" => "يجب ادخال البريد الالكتروني",
     "emailunique" => "هذا البريد الالكتروني تم أخذه",
@@ -45,8 +45,17 @@ return [
     "food" => "الأطعمة",
     "city" => "المدن",
     "cloths" => "الملابس",
+
+    ////
     "o_logout" => "تسجيل الخروج",
     "o_login" => "تسجيل الدخول",
     "o_registerbtn" => "أو انشاء مستخدم جديد",
 
+    ////O Register
+    "a_login_register" => "دخول الأدمن",
+    "a_login" => "تسجيل الدخول",
+
+    "nihon_modal" => "دولة اليابان",
+
+    "showPassword" => "اظهار كلمة السر",
 ];

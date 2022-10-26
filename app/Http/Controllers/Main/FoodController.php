@@ -27,19 +27,27 @@ class FoodController extends Controller
 
     ################################ Food Blade ################################
 
-    public function foodCreate(){
+    public function create(){
         $admin = Auth::guard('admin')->user();
         return view('admindashboard.food.create',['admin'=>$admin]);
     }
 
     public function getFood(){
         //$gf = food::all();
-        $gf = food::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->get();
+        $gf = food::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')->get();
         return response()->json(["gf"=>$gf]);
     }
 
-    public function food(){
-        return view("nihonBlade.food");
+    public function food(Request $request){
+
+        $search = $request->input('search');
+        $posts = food::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')
+        ->where('name_en', 'LIKE', "%{$search}%")
+        ->orWhere('info_en', 'LIKE', "%{$search}%")
+        ->orWhere('name_ar', 'LIKE', "%{$search}%")
+        ->orWhere('info_ar', 'LIKE', "%{$search}%")
+        ->get();
+        return view("nihonBlade.food",compact('posts'));
     }
 
     ################################ End ################################

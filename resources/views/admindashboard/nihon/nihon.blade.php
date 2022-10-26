@@ -19,7 +19,7 @@
                             <th>Info_en</th>
                         </tr>
                         @foreach($all as $nihon)
-                        <tr class="table_food{{ $nihon->id }}">
+                        <tr class="table_nihon{{ $nihon->id }}">
                             <th class="col-md-2">{{ $nihon->id }}</th>
                             <td class="col-md-4">
                                 <p>{{ $nihon->name_ar }}</p>
@@ -34,10 +34,10 @@
                                 <p>{{ $nihon->info_en }}</p>
                             </td>
                             <td class="col-md-2">
-                                <a href="{{ route('food_edit',$nihon->id) }}" class="btn btn-success" role="button">edit</a>
+                                <a href="{{ route('nihon_edit',$nihon->id) }}" class="btn btn-success" role="button">edit</a>
                             </td>
                             <td class="col-md-2">
-                                <a href="" food_id="{{ $nihon->id }}" class="btn btn-danger food_delete" role="button">delete</a>
+                                <a href=""  nihon_id="{{ $nihon->id }}" class="btn btn-danger nihon_delete" role="button">delete</a>
                             </td>
                         </tr>
                         @endforeach
@@ -52,31 +52,31 @@
 
 @section('script')
     <script>
-        $(document).on('click','.food_delete',function(e){
+        $(document).on('click','.nihon_delete',function(e){
             e.preventDefault();
 
-            var foodData = $(this).attr('food_id');
+            var formData = $(this).attr('nihon_id');
             $.ajax({
                 method:"post",
-                url:"{{ route('food_delete') }}",
+                url:"{{ route('nihon_delete') }}",
                 data:{
                     "_token":"{{ csrf_token() }}",
-                    "id":foodData
+                    "id":formData
                 },
 
                 success:function(data){
                     if(data.status==true){
-                        var div = document.getElementById('foDeletesuccess');
+                        var div = document.getElementById('niDeletesuccess');
                         div.innerHTML=data.msg;
-                        $('#foDeletesuccess').show();
+                        $('#niDeletesuccess').show();
                     }
                     else {
-                        var div = document.getElementById('foDeletef');
+                        var div = document.getElementById('niDeletef');
                         div.innerHTML=data.msg;
-                        $('#foDeletef').show();
+                        $('#niDeletef').show();
                     }
 
-                    $('.table_food'+data.id).remove();
+                    $('.table_nihon'+data.id).remove();
                 },
                 error:function(reject){
                     var ajaxresponse = $.parseJSON(reject.responseText);

@@ -1,41 +1,49 @@
+$(document).ready(function(){
 
-    // Open the Modal
-    function openModal() {
-    document.getElementById("myModal").style.display = "block";}
+    $('.show_image').on('click',function(){
+        var id = $(this).data('id');
+        $('#bigSpace-'+id).css('display','block');
 
-    // Close the Modal
-    function closeModal() {
-    document.getElementById("myModal").style.display = "none";
-    }
+        var img = $(this).attr('src');
 
-    var slideIndex = 1;
-    showSlides(slideIndex);
+        $('#img01-'+id).attr('src',img);
 
-    // Next/previous controls
-    function plusSlides(n) {
-    showSlides(slideIndex += n);
-    }
+        $('.show_image2').on('click',function(){
+            var img2 = $(this).attr('src');
+            $('#img01-'+id).attr('src',img2);
+        });
 
-    // Thumbnail image controls
-    function currentSlide(n) {
-    showSlides(slideIndex = n);
-    }
 
-    function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("demo");
-    var captionText = document.getElementById("caption");
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";
-    dots[slideIndex-1].className += " active";
-    captionText.innerHTML = dots[slideIndex-1].alt;
-    }
+    })
 
+    $('.close').click(function(){
+        $('.bigSpace').css("display","none");
+    });
+
+
+    $('#checkPass').click(function(){
+       var x = $('#myPass');
+
+        if (x.attr('type') === "password") {
+          x.attr('type','text');
+        }
+        else{
+          x.attr('type','password');
+        }
+    });
+
+    $('#checkPassConf').click(function(){
+        var confirm = $('#password-confirm');
+
+        if (confirm.attr('type') === "password") {
+            confirm.attr('type','text');
+        }
+        else{
+            confirm.attr('type','password');
+        }
+    });
+
+    $('.nihon_model_btn').click(function(){
+        $('.nihon-container').fadeToggle(1000);
+    });
+});
