@@ -101,13 +101,10 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                 </div>
-
                                 <button class="close text-light" type="button">
                                     <span>&times</span>
                                 </button>
-
                             </div>
 
                         </div>

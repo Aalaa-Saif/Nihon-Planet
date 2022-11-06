@@ -1,5 +1,3 @@
-const { isSet } = require("lodash");
-
 $(document).ready(function(){
 
     $('.show_image').on('click',function(){
