@@ -18,17 +18,16 @@
                     </div>
                     @endforeach
 
-
             </div>
 
             <div class="float-right col-md-8">
-
+             @if($posts->isNotEmpty())
                 @foreach ($posts as $post)
                     <div class="card  my-4 bg-light">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-8 mb-2">
-                                    <img src="{{ asset('img/userimg/'.$post->user->photo) }}" class="float-left rounded-circle" style="width:50px; height:50px;">
+                                    <img src="{{ asset('img/userimg/'.$post->user->photo) }}" class="float-left border border-dark rounded-circle" style="width:50px; height:50px;">
                                     <b><h4 class="userfloat mt-2">{{ $post->user->name }}</h4></b>
 
                                 </div>
@@ -51,7 +50,7 @@
                             <div class="card-footer">
                                 <form method="POST" action="">
                                     @csrf
-                                    <input class="form-control to_Comment" id="to_Comment" placeholder="Click here to Comment" data-id="{{$post->id}}">
+                                    <input class="form-control to_Comment" id="to_Comment" placeholder="{{ __('messages.clickHere') }}" data-id="{{$post->id}}">
                                 </form>
                                 <p class="blockqoute offset-md-9">{{ $post->created_at }}</p>
                             </div>
@@ -60,13 +59,13 @@
 
                             <div id="bigSpace-{{ $post->id }}" class="bigSpace">
 
-                                <div class="reload_div-{{ $post->id }}">
+                                <div class="reload_div-{{ $post->id }}  mx-1">
 
                                     <form method="POST" action="" class="form_comment">
                                         @csrf
                                         <textarea autofocus class="form-control col-md-6 offset-md-3 comment-{{ $post->id }} border-dark fc" name="comment" placeholder="Write a comment" row="3"></textarea>
 
-                                        <button href="" comment_id="{{ $post->id }}" class="btn btn-info offset-md-8 comment_btn my-2">Send</button>
+                                        <button href="" comment_id="{{ $post->id }}" class="btn btn-info comment_btn my-2">Send</button>
                                     </form>
 
 
@@ -74,9 +73,9 @@
                                             <div class="col-md-6 offset-md-3 comment_space">
                                                 <div class="scroll_post rounded">
                                                 @foreach ($post->comments as $comm)
-                                                    <img class="float-left img-fluid rounded-circle" src="{{ asset('img/userimg/'.$comm->user['photo']) }}" style="width:40px; height:40px;">
+                                                    <img class="float-left img-fluid border border-dark rounded-circle" src="{{ asset('img/userimg/'.$comm->user['photo']) }}" style="width:40px; height:40px;">
                                                     <b><h5 class="my-2 userfloat text-dark">{{ $comm->user['name'] }}</h5></b>
-                                                    <div class="col-md-10 ml-5 mb-2">
+                                                    <div class="col-xs-2 ml-5 mb-2">
                                                         <p id="comment_p" class="text-dark bg-light border rounded comment_p">{{ $comm->comment }}</p>
                                                     </div>
                                                 @endforeach
@@ -94,6 +93,11 @@
                         </div>
                     </div>
                 @endforeach
+             @else
+                <div>
+                    <h2>No posts found</h2>
+                </div>
+             @endif
 
             </div>
         </div>

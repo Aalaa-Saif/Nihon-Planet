@@ -7,7 +7,7 @@
             <div class="card bg-dark text-light my-5">
                 <div class="card-header text-center"><b>{{ __('messages.login') }}</b></div>
 
-                <div class="card-body">
+                <div class="card-body o_login_back">
                     <form method="POST" autocomplete="off" action="{{ route('login_check') }}">
                         @csrf
 
@@ -30,7 +30,9 @@
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-3">
                                 <input id="myPass" type="password" class="form-control" name="password">
-                                <input type="checkbox" id="checkPass" class="col-md-1"><spam class="text-light checktext">{{ __('messages.showPassword') }}</spam>
+                            </br>
+                                <input type="checkbox" id="checkPass"><spam class="text-light checktext">{{ __('messages.showPassword') }}</spam>
+
                                     <small class="invalid-feedback" role="alert"></small>
                             </div>
                         </div>
@@ -43,7 +45,7 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-4 offset-md-4">
                                 <a href="{{ url('otaku register') }}">
                                     {{ __('messages.o_registerbtn') }}
                                 </a>

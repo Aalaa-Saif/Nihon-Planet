@@ -16,4 +16,13 @@ $(document).ready(function() {
         });
     })
 
+    $('.click_pen').click(function(){
+        $('#changeProfile').css('display','block');
+    });
+
+    $('.close').click(function(){
+        $('#changeProfile').css("display","none");
+    });
+
 });
+

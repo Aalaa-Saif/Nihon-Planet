@@ -38,7 +38,7 @@
 
                             <div class="col-md-6">
                                 <input id="myPass" type="password" class="form-control" name="password">
-                                <input type="checkbox" id="checkPass" class="col-md-1"><spam class="text-light checktext">{{ __('messages.showPassword') }}</spam>
+                                <input type="checkbox" id="checkPass"><spam class="text-light checktext">{{ __('messages.showPassword') }}</spam>
                                     <small id="password_error" class="small-text text-danger font-weight-bold" role="alert"></small>
 
                             </div>
@@ -49,7 +49,7 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-                                <input type="checkbox" id="checkPassConf" class="col-md-1"><spam class="text-light checktext">{{ __('messages.showPassword') }}</spam>
+                                <input type="checkbox" id="checkPassConf"><spam class="text-light checktext">{{ __('messages.showPassword') }}</spam>
                                 <small id="password_confirmation_error" class="small-text text-danger font-weight-bold" role="alert"></small>
                             </div>
                         </div>

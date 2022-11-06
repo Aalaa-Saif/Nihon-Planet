@@ -25,6 +25,7 @@ nav a{
     color: darkred;
     font-size: 20px;
     font-weight: bold;
+    height: auto;
 }
 nav a:hover{
     color: black;
@@ -32,23 +33,15 @@ nav a:hover{
 
 
 .nihon-container{
-    color: lightgreen;
-    border-radius: 8px;
-    display: none;
+    color: rgba(45, 156, 55, 0.808);
 }
 
 .nihon-container h4{
-    color: palevioletred;
+    color: rgb(158, 0, 53);
 }
 
 .modal {
     padding-top: 120px;
-}
-
-.nihon_model_btn{
-   border: 8px solid goldenrod;
-   box-shadow:1px 20px 15px rgb(81, 68, 138);
-
 }
 
 .img_scroll{
@@ -60,6 +53,9 @@ nav a:hover{
     display: inline-block;
 }
 
+.o_login_back{
+    font-size: 15px;
+}
 
 .bigSpace{
     display: none; /* Hidden by default */
@@ -74,14 +70,12 @@ nav a:hover{
     background-color: rgb(51, 48, 48); /* Black w/ opacity */
 }
 
-.close {
+
+.close span{
     position: absolute;
     top: 20px;
     right: 200px;
     transition: 0.3s;
-  }
-
-.close span{
     font-size: 50px;
     color: red;
 }
@@ -89,5 +83,23 @@ nav a:hover{
 
 .checktext{
     font-size: 15px;
+    padding-left: 10px;
+}
+.bigSpace img{
+    z-index: -1;
+  }
+@media only screen and (max-width: 700px){
+    .bigSpace img{
+       width: 80px;
+       height: 80px;
+      }
 
+    .close span{
+        position: absolute;
+        top: 10px;
+        right:0px;
+        transition: 0.3s;
+        font-size: 50px;
+        color: red;
+    }
 }

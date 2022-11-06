@@ -2,8 +2,6 @@
 @section('content')
     <div class="container div_reload">
 
-        <span><a href="{{ url('#') }}" class="btn btn-primary" role="button">Cloths Create</a></span>
-
         <div id="clDeletesuccess" class="alert alert-success my-2" style="display:none;"></div>
         <div id="clDeletef" class="alert alert-danger my-2" style="display:none;"></div>
 

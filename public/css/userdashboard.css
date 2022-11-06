@@ -8,6 +8,7 @@
     background-color: rgb(95, 180, 176);
     font-size: 20px;
     font-family: 'Cooper Black';
+    z-index: 1;
 }
 .nav ul li{
     padding-left: 10px;
@@ -48,18 +49,14 @@
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     background-color: rgba(199, 194, 194, 0.9); /* Black w/ opacity */
-
-
-
 }
 
-.close {
+
+.close span{
     position: absolute;
     top: 20px;
-    right: 100px;
+    right: 200px;
     transition: 0.3s;
-  }
-.close span{
     font-size: 50px;
     color: black;
 }
@@ -93,6 +90,10 @@
     background-color: rgb(54, 51, 51); /* Black w/ opacity */
 }
 
+.bigSpaceImg img{
+    z-index: -1;
+}
+
 .scroll_post{
     background-color: white;
     width: 100%;
@@ -104,3 +105,33 @@
 .comment_space{
     height: 400px;
 }
+
+.form_comment button{
+    margin-left: 920px;
+}
+@media only screen and (max-width: 700px){
+    .close span{
+        position: absolute;
+        top: 10px;
+        right: 0px;
+        transition: 0.3s;
+        font-size: 50px;
+        color: rgb(240, 16, 0);
+    }
+
+    .dropdown-toggle{
+        margin-top: -100px;
+        margin-left: 370px;
+        z-index: 1;
+    }
+
+    .form_comment button{
+        margin-left: 400px;
+    }
+
+    .card-footer p{
+        padding-left: 210px;
+    }
+}
+
+

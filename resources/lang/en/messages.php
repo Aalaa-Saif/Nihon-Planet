@@ -50,6 +50,10 @@ return [
     "o_login" => "Login",
     "o_registerbtn" => "or Create new User",
 
+    "profile" => "Profile",
+    "posts" => "posts",
+    "search" => "Search",
+
     ////O Register
     "a_login_register" =>"Admin Login",
     "a_login" => "Login",
@@ -57,4 +61,8 @@ return [
     "nihon_modal" => "Nihon(Japan) Country",
 
     "showPassword" =>"show password",
+    "delete" => "delete",
+    "send" => "send",
+    "postWrite" => "Write here what's in your mind",
+    "clickHere" => "Click here to comment",
 ];

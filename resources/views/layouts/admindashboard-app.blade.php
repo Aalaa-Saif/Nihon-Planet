@@ -31,9 +31,50 @@
         </div>
         <div>
             <img class="img-fluid rounded-circle mt-5 mx-auto d-block" src="{{ asset('img/adminimg/'.$admin->photo) }}" style="width:100px; height:100px;">
+            <h2 class="adminName text-center">{{ $admin->name }}</h2>
+            <span><img src="{{ asset('img/edit.png') }}" style="width:15px; height:15px;" class="click_pen" alt="edit"></span>
         </div>
 
-        <h2 class="adminName text-center">{{ $admin->name }}</h2>
+        <div id="changeProfile" class="changeProfile">
+            <form method="POST" action="" id="profile_update_id" enctype="multipart/form-data">
+                @csrf
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-center">Admin Name</label>
+
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="name" value="{{ $admin->name }}" autofocus>
+                            <small id="name_ar_error" class="small-text text-danger font-weight-bold" role="alert"></small>
+                    </div>
+                </div>
+                <input type="text" class="form-control" name="id" style="display:none;" value="{{ $admin->id }}">
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-center">Admin Photo</label>
+
+                        <img class="img-fluid ml-3" style="width:100px; height:100px" src="{{asset('img/adminimg/'.$admin->photo)}}">
+
+                        <div class="col-md-5 mt-5">
+                            <input type="file" class="form-control mt-2" name="photo">
+                                <small class="small-text text-danger font-weight-bold" role="alert"></small>
+                        </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 offset-md-3">
+                        <button id="profile_update_btn" class="btn btn-primary">
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <button class="close text-light profile_close" type="button">
+                <span>&times</span>
+            </button>
+        </div>
+
+
 
         <hr class="bg-dark mx-1">
         <div class="sidebar-body">
@@ -65,7 +106,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <img src="{{ asset('img/y.png') }}" class="mr-1" style="width:30px; height:30px;"><a href="#third" data-toggle="collapse" aria-expanded="false" aria-controls="third">Cloths</a>
+                    <img src="{{ asset('img/cloth.png') }}" class="mr-1" style="width:30px; height:30px;"><a href="#third" data-toggle="collapse" aria-expanded="false" aria-controls="third">Cloths</a>
                     <ul id="third" class="collapse">
                         <li class="nav-item">
                             <a href="{{ url('cloths create') }}">Create Cloths</a>
@@ -76,7 +117,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <img src="{{ asset('img/onigiri.png') }}" class="mr-1" style="width:30px; height:30px;"><a href="#fourth" data-toggle="collapse" aria-expanded="false" aria-controls="fourth">Food</a>
+                    <img src="{{ asset('img/food.png') }}" class="mr-1" style="width:30px; height:30px;"><a href="#fourth" data-toggle="collapse" aria-expanded="false" aria-controls="fourth">Food</a>
                     <ul id="fourth" class="collapse">
                         <li class="nav-item">
                             <a href="{{ url('food create') }}">Create Food</a>
@@ -100,7 +141,7 @@
 
                 <hr class="bg-dark mx-1">
                 <li class="nav-item">
-                    <a href="{{ url('admin logout') }}">Logout</a>
+                    <img src="{{ asset('img/logout.ico') }}" class="mr-1" style="width:30px; height:30px;"> <a href="{{ url('admin logout') }}">Logout</a>
                 </li>
             </ul>
 
@@ -113,6 +154,8 @@
         <button class="btn navbar-btn navbar-toggler navbar-light bg-light opendash" type="button"> <span class="navbar-toggler-icon"></span></button>
         <h3 class="navbar-text text-center"><a href="{{ url('admin dashboard') }}" class="text-dark"><u>Admin Dashboard</u></a></h3>
 
+        <br>
+
         @yield('content')
 
      </div>
@@ -123,7 +166,32 @@
 
 
 
+    <script>
 
+$(document).on('click','#profile_update_btn',function(e){
+    e.preventDefault();
+
+    var formData = new FormData($('#profile_update_id')[0]);
+    $.ajax({
+        method:"post",
+        enctype:"multipart/form-data",
+        url:"{{ route('admin_update_profile') }}",
+        data:formData,
+        processData:false,
+        contentType:false,
+        cache:false,
+        success:function(data){
+            if(data.status==true){
+                location.reload();
+            }
+        },
+        error:function(reject){
+
+        }
+    });
+});
+
+    </script>
 
 
 

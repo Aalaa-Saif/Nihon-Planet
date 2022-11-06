@@ -3,21 +3,17 @@
 @section('content')
 <div class="container my-4">
 
-            <div class="card-body">
+            <div class="card-body div_reload">
                 <img src="{{ asset('img/userimg/'.$user->photo) }}" style="width: 200px; height:200px;" class='rounded-circle img-fluid mx-auto d-block border border-dark'>
-
                 <div class="text-center my-2">
                     <h3>{{$user->name }}</h3>
                 </div>
             </div>
-
-
-
-                <form method="POST" action="" id="postid" enctype="multipart/form-data">
+                <form method="POST" action="" id="postid" enctype="multipart/form-data" class="div_reload">
                     @csrf
-                    <div class="card bg-light">
+                    <div class="card bg-light col-md-8 offset-md-2">
                         <div class="card-body">
-                            <textarea class="form-control" placeholder="Write here what's in your mind" name="text" rows="4"></textarea>
+                            <textarea class="form-control" placeholder="{{ __('messages.postWrite') }}" name="text" rows="4"></textarea>
 
                             <div class="image_upload offset-md-10">
                                 <label for="file-input">
@@ -27,7 +23,7 @@
                                 <input id="file-input" type="file" name="image[]" multiple>
                             </div>
                             <div class="offset-md-10">
-                                <button id="postbtn" class="btn btn-info">Send</button>
+                                <button id="postbtn" class="btn btn-info">{{ __('messages.send') }}</button>
                             </div>
                         </div>
                     </div>
@@ -38,17 +34,23 @@
                 <br>
                 <br>
 
-
+            @if($posts->isNotEmpty())
                 @foreach ($posts as $post)
-                    <div class="card my-4 bg-light">
+
+                    <div class="card my-4 col-md-8 offset-md-2 bg-light post_content{{ $post->id }}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-8 mb-2">
-                                        <img class="float-left img-fluid rounded-circle" src="{{ asset('img/userimg/'.$user->photo) }}" style="width:50px; height:50px;">
+                                        <img class="float-left img-fluid border border-dark rounded-circle" src="{{ asset('img/userimg/'.$user->photo) }}" style="width:50px; height:50px;">
                                         <b><h4 class="my-2 userfloat">{{ $user->name }}</h4></b>
                                 </div>
+                                <div class="col-md-1 offset-md-3">
+                                    <img src="{{ asset('img/options.png') }}"style="width:15px; height:15px;" class="dropdown-toggle" href="#" id="drop2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="dropdown-menu" aria-labelledby="drop2" role="menu">
+                                          <a postDelete_id="{{ $post->id }}" class="btn post_delete" role="button">{{ __('messages.delete') }}</a>
+                                    </div>
+                                </div>
                             </div>
-
 
                             <p class="sizefontpost">{{ $post->text }}</p>
 
@@ -67,32 +69,36 @@
                             <div class="card-footer">
                                 <form method="POST" action="">
                                     @csrf
-                                    <input class="form-control to_Comment" placeholder="Click here to comment" data-id={{ $post->id }}>
+                                    <input class="form-control to_Comment" placeholder="{{ __('messages.clickHere') }}" data-id={{ $post->id }}>
                                     <p class="blockqoute offset-md-9">{{ $post->created_at }}</p>
                                 </form>
                             </div>
 
                             <div id="bigSpace-{{ $post->id }}" class="bigSpace">
 
-                                <div class="reload_div-{{ $post->id }}">
+                                <div class="reload_div-{{ $post->id }}  mx-1">
 
                                     <form method="POST" action="" class="form_comment">
                                         @csrf
-                                        <textarea class="form-control col-md-6 offset-md-3 comment-{{ $post->id }} border-dark" name="comment" placeholder="Write a comment" row="3"></textarea>
+                                        <div class="form-group">
+                                            <textarea class="form-control col-md-6 offset-md-3 comment-{{ $post->id }} border-dark" name="comment" placeholder="Write a comment" row="3"></textarea>
+                                        </div>
 
-                                        <button href="" comment_id="{{ $post->id }}" class="btn btn-info offset-md-8 comment_btn my-2">Send</button>
+
+                                        <button href="" comment_id="{{ $post->id }}" class="btn btn-info pull-right comment_btn my-2">Send</button>
                                     </form>
 
-
-                                        <div class="row mt-1">
-                                            <div class="col-md-8 offset-md-3 mb-2">
-                                                @foreach ($post->comments as $comm)
-                                                <img class="float-left img-fluid rounded-circle" src="{{ asset('img/userimg/'.$comm->user->photo) }}" style="width:40px; height:40px;">
-                                                <b><h5 class="my-2 userfloat text-dark">{{ $comm->user->name }}</h5></b>
-                                                <div class="col-md-7 ml-5 mb-2">
-                                                    <p class="text-dark bg-light border rounded comment_p">{{ $comm->comment }}</p>
+                                        <div class="row">
+                                            <div class="col-md-6 offset-md-3 comment_space">
+                                                <div class="scroll_post rounded">
+                                                    @foreach ($post->comments as $comm)
+                                                    <img class="float-left img-fluid border border-dark rounded-circle" src="{{ asset('img/userimg/'.$comm->user->photo) }}" style="width:40px; height:40px;">
+                                                    <b><h5 class="my-2 userfloat text-dark">{{ $comm->user->name }}</h5></b>
+                                                    <div class="col-xs-2 ml-5 mb-2">
+                                                        <p id="comment_p" class="text-dark bg-light border rounded comment_p">{{ $comm->comment }}</p>
+                                                    </div>
+                                                    @endforeach
                                                 </div>
-                                                @endforeach
                                             </div>
                                         </div>
 
@@ -106,9 +112,13 @@
 
                         </div>
                     </div>
+
                 @endforeach
-
-
+            @else
+                <div>
+                    <h2 class="text-center">No posts found</h2>
+                </div>
+            @endif
 </div>
 @endsection
 
@@ -129,9 +139,11 @@
                 cache:false,
                 success:function(data){
                     if(data.status==true){
-
-                    location.reload(true);
+                        setTimeout( function() {
+                            $(".div_reload").load(location.href + " .div_reload");
+                         }, 400 );
                     }
+
                 },
                 error:function(reject){
                     var ajaxresponse = $.parseJSON(reject.responseText);
@@ -164,6 +176,39 @@
                          }, 400 );
                     }
 
+                },
+                error:function(reject){
+                    var ajaxresponse = $.parseJSON(reject.responseText);
+                    $.each(ajaxresponse.errors,function(key,val){
+                        $("#"+key+"_error").text(val[0]);
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).on('click','.post_delete',function(e){
+            e.preventDefault();
+
+            var formData = $(this).attr('postDelete_id');
+            $.ajax({
+                method:"post",
+                url:"{{ route('post_delete') }}",
+                data:{
+                    "_token":"{{ csrf_token() }}",
+                    "id":formData
+                },
+
+                success:function(data){
+                    if(data.status==true){
+
+                    }
+                    else {
+
+                    }
+
+                    $('.post_content'+data.id).remove();
                 },
                 error:function(reject){
                     var ajaxresponse = $.parseJSON(reject.responseText);

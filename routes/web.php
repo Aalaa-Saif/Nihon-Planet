@@ -28,9 +28,6 @@ Route::group(['namespace' => 'Main'], function() {
     // Middleware For Admins //
     Route::group(['middleware'=>'auth:admin'],function(){
 
-        // Admin Auth Controller //
-        Route::get('admin dashboard',[AdminAuthController::class,'admin_dashboard'])->name('admin_dashboard');
-
          // Advertisement Controller (Admin) //
         Route::get('ad create',[AdvertisementController::class,'create']); //For add Advertisement
         Route::post('ad store',[AdvertisementController::class,'store'])->name('ad_store');
@@ -107,7 +104,7 @@ Route::group(['namespace' => 'Main'], function() {
 
 Route::group(['namespace' => 'AuthController'], function() {
     ############################ Admin #############################
-    Route::group(['namespace' => 'User'], function() {
+    Route::group(['namespace' => 'Admin'], function() {
         // Admin Register Controller //
         //Route::get('admin register',[AdminRegisterController::class,'register'])->name('admin_register');
         //Route::post('admin store',[AdminRegisterController::class,'store'])->name('admin_store');
@@ -118,6 +115,20 @@ Route::group(['namespace' => 'AuthController'], function() {
 
         // Admin Logout Controller //
         Route::get('admin logout',[AdminLogoutController::class,'logout']);
+
+        // Middleware For Admins //
+        Route::group(['middleware'=>'auth:admin'],function(){
+            // Admin Auth Controller //
+            Route::get('admin dashboard',[AdminAuthController::class,'admin_dashboard'])->name('admin_dashboard');
+            Route::post('admin update profile',[AdminAuthController::class,'update'])->name('admin_update_profile');
+        });
+
+        Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],
+        function(){
+
+             // Admin Login Controller //
+             Route::get('admin login',[AdminLoginController::class,'login'])->name('admin_login');
+        });
     });
     ############################ End Admin #############################
 
@@ -127,9 +138,6 @@ Route::group(['namespace' => 'AuthController'], function() {
         // Blade -> Languages (en,ar) //
         Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],
         function(){
-
-            // Admin Login Controller //
-            Route::get('admin login',[AdminLoginController::class,'login'])->name('admin_login');
 
             // User Register Controller //
             Route::get('otaku register',[RegisterController::class,'register'])->name('otaku_register');;
@@ -145,10 +153,12 @@ Route::group(['namespace' => 'AuthController'], function() {
             // Middleware For Users //
             Route::group(['middleware'=>'auth'],function(){
                 ////User Dashboard Controller////
-                Route::get('otaku profile',[UserAuthController::class,'profile']);
+                Route::get('otaku profile',[UserAuthController::class,'profile'])->name('o_profile');
                 Route::get('post',[UserAuthController::class,'post'])->name('post');
                 Route::post('post store',[UserAuthController::class,'post_store'])->name('post_store');
                 Route::post('comment store',[UserAuthController::class,'comment_store'])->name('comment_store');
+                Route::post('post delete',[UserAuthController::class,'delete'])->name('post_delete');
+                Route::post('profile update',[UserAuthController::class,'updateProfilePhoto'])->name('profile_photo_update');
 
             });
 
@@ -157,7 +167,6 @@ Route::group(['namespace' => 'AuthController'], function() {
     ################################## End User ##################################
 
 });
-
 
 
 //Auth::routes();

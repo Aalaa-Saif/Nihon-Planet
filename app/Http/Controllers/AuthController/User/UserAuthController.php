@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AuthController\User;
 
 use Session;
 use messages;
+use File;
 use App\Models\ad;
 use App\Models\User;
 use App\Models\userpost;
@@ -72,24 +73,51 @@ class UserAuthController extends Controller
 
 
     // View Profile
-    public function profile(){
+    public function profile(Request $request){
         $user = Auth::user();
-        $posts = userpost::orderBy('created_at','DESC')->get()->where('user_id',Auth::user()->id);
-
+        $search = $request->input('search');
+        $pos = userpost::orderBy('created_at','DESC')->where('user_id',Auth::user()->id);
+        $posts = $pos
+        ->where('text', 'LIKE', "%{$search}%")
+        ->get();
         return view('userdashboard.profile',compact('posts'),['user'=> $user]);
 
     }
 
     // View Posts
-    public function post(){
+    public function post(Request $request){
         $user = Auth::user();
-
+        $search = $request->input('search');
         //Fetch Advertisement
        $ad = ad::all();
 
                         // 'user' is the name of Relationship in userpost Modal
-        $posts = userpost::with('comments.user')->orderBy('created_at','DESC')->get();
+        //$posts = userpost::with('comments.user')->orderBy('created_at','DESC')->get();
+        $posts = userpost::with('comments.user')->orderBy('created_at','DESC')
+        ->where('text', 'LIKE', "%{$search}%")
+        ->get();
         return view('userdashboard.post',compact('posts','ad'),['user'=> $user]);
+    }
+
+    public function delete(Request $request){
+        $delete = userpost::find($request->id);
+        if (!$delete)
+        return response()->json([
+            "status"=>false,
+        ]);
+            foreach($delete->userpostimgs as $img){
+                $path = public_path('img/userpostimg/'.$img->image);
+                if(File::exists($path)){
+                 File::delete($path);
+                }
+            }
+
+        $delete->delete();
+        $delete->userpostimgs()->delete();
+        return response()->json([
+            "status"=>true,
+            "id"=>$request->id
+        ]);
     }
 
 }

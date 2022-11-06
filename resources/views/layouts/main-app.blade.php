@@ -3,8 +3,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Nihon Planet</title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
@@ -27,10 +25,10 @@
     <div>
         @include('include.header')
     </div class="clear-fix">
+
     <div>
         @yield('content')
     </div>
-
 
 
     <!-- jQuery library -->
@@ -47,10 +45,3 @@
 @yield('script')
 </body>
 </html>
-
-
-
-
-
-
-

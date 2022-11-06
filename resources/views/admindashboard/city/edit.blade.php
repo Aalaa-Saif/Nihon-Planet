@@ -57,17 +57,19 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label text-md-center">Photo</label>
 
-                            @foreach ($city_edit->images as $img)
-                                <div class="card-body city_img{{ $img->id }}">
-                                    <img class="card-img-top" style="width:100px; height:100px" src="{{asset('img/city/'.$img->image)}}">
-                                    <a href="" class="btn btn-danger cityimg_delete text-light" cityimg_deleteid="{{ $img->id }}">Delete</a>
-                                </div>
-                            @endforeach
+                                @foreach ($city_edit->images as $img)
+                                    <div class="mx-1 city_img{{ $img->id }}">
+                                        <img class="mb-1" style="width:80px; height:80px" src="{{asset('img/city/'.$img->image)}}"><br>
+                                        <a href="" class="btn btn-danger cityimg_delete text-light mb-1" cityimg_deleteid="{{ $img->id }}">Delete</a>
+                                    </div>
+                                @endforeach
 
-                                <div class="col-md-7">
+
+                                <div class="offset-md-3">
                                     <input type="file" class="form-control" name="image[]" multiple>
-                                        <small class="small-text text-danger font-weight-bold" role="alert"></small>
+                                    <small class="small-text text-danger font-weight-bold" role="alert"></small>
                                 </div>
+
                         </div>
 
                         <div class="row">

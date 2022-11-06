@@ -2,8 +2,6 @@
 @section('content')
     <div class="container">
 
-        <span><a href="{{ url('#') }}" class="btn btn-primary" role="button">Nihon edit</a></span>
-
         <div id="adDeletesuccess" class="alert alert-success my-2" style="display:none;"></div>
         <div id="adDeletef" class="alert alert-danger my-2" style="display:none;"></div>
 
@@ -23,11 +21,9 @@
                                 <p>{{ $ad->text }}</p>
                             </td>
                             <td class="col-md-4">
-                                <img src="{{ asset('img/ad/'.$ad->media) }}" style="width:100px; height:100px;">
-                                <vedio controls width="400px">
-                                    <source src="{{URL::asset('/img/ad/$ad->media')}}" type="video/mp4">
-
-                                </vedio>
+                                <video id="my-video" class="video-js" controls preload="auto" width="150" height="150" data-setup="{}">
+                                    <source src="{{ asset('img/ad/'.$ad->media) }}" type="video/mp4" />
+                                </video>
                             </td>
 
                             <td class="col-md-2">

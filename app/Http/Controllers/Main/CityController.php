@@ -24,7 +24,6 @@ class CityController extends Controller
     }
 
     public function city(Request $request){
-       // $gci = city::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info')->orderBy('created_at','ASC')->get();
         $search = $request->input('search');
         $posts = city::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info')->orderBy('created_at','ASC')
         ->where('name_en', 'LIKE', "%{$search}%")

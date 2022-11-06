@@ -1,3 +1,5 @@
+const { isSet } = require("lodash");
+
 $(document).ready(function(){
 
     $('.show_image').on('click',function(){
@@ -13,7 +15,6 @@ $(document).ready(function(){
             $('#img01-'+id).attr('src',img2);
         });
 
-
     })
 
     $('.close').click(function(){
@@ -22,13 +23,13 @@ $(document).ready(function(){
 
 
     $('#checkPass').click(function(){
-       var x = $('#myPass');
+       var pass = $('#myPass');
 
-        if (x.attr('type') === "password") {
-          x.attr('type','text');
+        if (pass.attr('type') === "password") {
+            pass.attr('type','text');
         }
         else{
-          x.attr('type','password');
+            pass.attr('type','password');
         }
     });
 
@@ -43,7 +44,8 @@ $(document).ready(function(){
         }
     });
 
-    $('.nihon_model_btn').click(function(){
-        $('.nihon-container').fadeToggle(1000);
-    });
+
+
+
 });
+

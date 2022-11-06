@@ -2,8 +2,6 @@
 @section('content')
     <div class="container">
 
-        <span><a href="{{ url('#') }}" class="btn btn-primary" role="button">Nihon edit</a></span>
-
         <div id="niDeletesuccess" class="alert alert-success my-2" style="display:none;"></div>
         <div id="niDeletef" class="alert alert-danger my-2" style="display:none;"></div>
 
