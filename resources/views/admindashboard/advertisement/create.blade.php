@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-3 col-form-label text-md-center">Media</label>
+                            <label class="col-md-3 col-form-label text-md-center">Media (Only video)</label>
 
                             <div class="col-md-7">
                                 <input type="file" class="form-control" name="media">

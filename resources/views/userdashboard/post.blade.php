@@ -3,9 +3,9 @@
 @section('content')
     <div class="container my-2">
         <div class="row">
-            <div class="float-left col-md-4 my-4 post_left_side rounded border border-info">
+            <div class="float-left col-md-4 my-4 post_left_side rounded border border-info"  dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
 
-                   <u> <h5 class="mt-4">Advertisement from Admin:</h5></u>
+                   <u> <h5 class="mt-4 text-center">{{ __('messages.adminAdvertisement') }}</h5></u>
                     @foreach ($ad as $adv)
                     <div class="mt-2">
                         {{ $adv->text }}

@@ -23,8 +23,8 @@ class ClothsController extends Controller
     }
 
     public function getCloths(){
-        $gc = cloth::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')->get();
-        return response()->json(["posts"=>$posts]);
+        $posts = cloth::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')->get();
+       return response()->json(["posts"=>$posts]);
     }
 
     public function cloths(Request $request){

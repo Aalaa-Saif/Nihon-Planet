@@ -66,4 +66,5 @@ return [
     "send" => "ارسال",
     "postWrite" => "اكتب هنا ما يدور في رأيك",
     "clickHere" => "اضغط هنا للتعليق",
+    "adminAdvertisement" => "إعلان من الأدمن:",
 ];

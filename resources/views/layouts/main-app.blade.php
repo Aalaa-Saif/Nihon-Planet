@@ -3,25 +3,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
     <title>Nihon Planet</title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
     </script>
     <link href="{{ asset('css/nihon.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="nofollow" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!-- Modal Gallery CSS -->
-    <link rel="stylesheet" href="src/css/bootstrap.modallery.min.css">
-
     <script src="{{ asset('js/nihonjs.js') }}"></script>
-
-    <!-- Modal Gallery Js -->
-    <script src='src/js/bootstrap.modallery.min.js'></script>
 
 </head>
 <html>
 
-<body >
+<body class="refresh_page">
     <div>
         @include('include.header')
     </div class="clear-fix">

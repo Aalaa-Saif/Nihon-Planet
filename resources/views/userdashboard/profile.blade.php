@@ -3,13 +3,13 @@
 @section('content')
 <div class="container my-4">
 
-            <div class="card-body div_reload">
+            <div class="card-body">
                 <img src="{{ asset('img/userimg/'.$user->photo) }}" style="width: 200px; height:200px;" class='rounded-circle img-fluid mx-auto d-block border border-dark'>
                 <div class="text-center my-2">
                     <h3>{{$user->name }}</h3>
                 </div>
             </div>
-                <form method="POST" action="" id="postid" enctype="multipart/form-data" class="div_reload">
+                <form method="POST" action="" id="postid" enctype="multipart/form-data">
                     @csrf
                     <div class="card bg-light col-md-8 offset-md-2">
                         <div class="card-body">
@@ -36,7 +36,6 @@
 
             @if($posts->isNotEmpty())
                 @foreach ($posts as $post)
-
                     <div class="card my-4 col-md-8 offset-md-2 bg-light post_content{{ $post->id }}">
                         <div class="card-body">
                             <div class="row">
@@ -134,13 +133,8 @@
                 processData:false,
                 contentType:false,
                 cache:false,
-                success:function(data){
-                    if(data.status==true){
-                        setTimeout( function() {
-                            $(".div_reload").load(location.href + " .div_reload");
-                         }, 400 );
-                    }
-
+                success:function(){
+                    location.reload();
                 },
                 error:function(reject){
                     var ajaxresponse = $.parseJSON(reject.responseText);

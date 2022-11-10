@@ -20,7 +20,7 @@
 
 
 
-<div class="container">
+<div class="container rrr">
     <div id="sidebar-id" class="sidebar border-right border-dark">
 
 
@@ -29,14 +29,14 @@
                 <span >&times</span>
             </button>
         </div>
-        <div>
+        <div class="div_reload">
             <img class="img-fluid rounded-circle mt-5 mx-auto d-block" src="{{ asset('img/adminimg/'.$admin->photo) }}" style="width:100px; height:100px;">
             <h2 class="adminName text-center">{{ $admin->name }}</h2>
             <span><img src="{{ asset('img/edit.png') }}" style="width:15px; height:15px;" class="click_pen" alt="edit"></span>
         </div>
 
         <div id="changeProfile" class="changeProfile">
-            <form method="POST" action="" id="profile_update_id" enctype="multipart/form-data">
+            <form method="POST" action="" class="fff" id="profile_update_id" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group row">
@@ -182,7 +182,9 @@ $(document).on('click','#profile_update_btn',function(e){
         cache:false,
         success:function(data){
             if(data.status==true){
-                location.reload();
+                setTimeout( function() {
+                    $(".rrr").load(location.href);
+                 }, 800 );
             }
         },
         error:function(reject){

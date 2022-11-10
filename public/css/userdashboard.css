@@ -55,10 +55,10 @@
 .close span{
     position: absolute;
     top: 20px;
-    right: 200px;
+    right: 300px;
     transition: 0.3s;
     font-size: 50px;
-    color: black;
+    color: rgb(86, 109, 214);
 }
 
 .close span:hover{
@@ -109,14 +109,14 @@
 .form_comment button{
     margin-left: 920px;
 }
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 768px){
     .close span{
         position: absolute;
         top: 10px;
         right: 0px;
         transition: 0.3s;
         font-size: 50px;
-        color: rgb(240, 16, 0);
+        color: rgb(86, 109, 214);
     }
 
     .dropdown-toggle{
@@ -133,5 +133,3 @@
         padding-left: 210px;
     }
 }
-
-

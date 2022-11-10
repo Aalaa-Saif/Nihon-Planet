@@ -65,4 +65,5 @@ return [
     "send" => "send",
     "postWrite" => "Write here what's in your mind",
     "clickHere" => "Click here to comment",
+    "adminAdvertisement" => "Advertisement from Admin:",
 ];
