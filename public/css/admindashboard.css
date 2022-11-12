@@ -6,7 +6,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgb(240, 146, 162);
+    background-image: linear-gradient(rgb(240, 146, 162),rgb(76, 179, 119));
     overflow-x: hidden;
     transition: all 0.9s;
 

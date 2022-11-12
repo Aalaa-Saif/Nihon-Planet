@@ -21,6 +21,10 @@ use App\Http\Controllers\AuthController\Admin\AdminRegisterController;
     //return view('welcome');
 //});
 
+Auth::routes(['verify'=>true]);
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 
 ################################# Admin #################################
 Route::group(['namespace' => 'Main'], function() {
@@ -151,7 +155,7 @@ Route::group(['namespace' => 'AuthController'], function() {
             Route::get('otaku logout',[LogoutController::class,'logout']);
 
             // Middleware For Users //
-            Route::group(['middleware'=>'auth'],function(){
+            Route::group(['middleware'=>['auth','verified']],function(){
                 ////User Dashboard Controller////
                 Route::get('otaku profile',[UserAuthController::class,'profile'])->name('o_profile');
                 Route::get('post',[UserAuthController::class,'post'])->name('post');
@@ -168,6 +172,3 @@ Route::group(['namespace' => 'AuthController'], function() {
 
 });
 
-
-//Auth::routes();
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

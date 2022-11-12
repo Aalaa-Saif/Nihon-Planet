@@ -5,12 +5,10 @@
             @if($posts->isNotEmpty())
                 @foreach ($posts as $food)
                     <div class="col-md-4 my-1">
-                        <div class="card border-dark">
-                            <div class="card-body">
-                                <img class="img-fluid card-img-top mx-auto d-block" src="{{ asset('img/food/'.$food->photo) }}" style="width:300px; height:300px;">
-                                <h3 class="text-center my-1">{{ $food->name }}</h3>
-                                <h5 class="text-center my-1">{{ $food->info }}</h5>
-                            </div>
+                        <div class="card-body">
+                            <img class="img-fluid card-img-top mx-auto d-block" src="{{ asset('img/food/'.$food->photo) }}" style="width:300px; height:300px;">
+                            <h3 class="text-center my-1">{{ $food->name }}</h3>
+                            <h5 class="text-center my-1">{{ $food->info }}</h5>
                         </div>
                     </div>
                 @endforeach

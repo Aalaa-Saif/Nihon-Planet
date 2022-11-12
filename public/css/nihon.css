@@ -1,10 +1,9 @@
 /*CSS*/
 body{
-    background-image:linear-gradient(rgb(248, 203, 105), rgb(255, 126, 186),rgb(109, 141, 161));
+    background-image:linear-gradient(rgb(247, 219, 158), rgb(235, 202, 217),rgb(189, 204, 212));
     background-repeat: no-repeat;
     position: relative;
     min-height: 100vh;
-
 }
 .backg_nav{
     background-image: url("/img/ni.jpg");
@@ -86,9 +85,12 @@ nav a{
     right: 200px;
     transition: 0.3s;
     font-size: 50px;
-    color: red;
+    color: wheat;
 }
 
+.close span:hover{
+    color:red;
+}
 
 .checktext{
     font-size: 15px;
@@ -103,6 +105,12 @@ nav a{
     margin-left: 380px;
 }
 
+#footer{
+    background-image: radial-gradient(rgb(248, 203, 105),rgb(199, 119, 143),rgb(72, 59, 107));
+}
+.footer_font{
+    font-size: 20px;
+}
 
 @media only screen and (max-width: 700px){
     .bigSpace img{
@@ -116,7 +124,11 @@ nav a{
         right:0px;
         transition: 0.3s;
         font-size: 50px;
-        color: red;
+        color: rgb(24, 94, 59);
+    }
+
+    .close span:hover{
+        color:red;
     }
 
     .scroll_small_img{

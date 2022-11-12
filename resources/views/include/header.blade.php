@@ -1,5 +1,5 @@
 <div class="backg_nav">
-  <nav class="navbar navbar-expand-lg nav py-5">
+  <nav class="navbar navbar-expand-lg nav border-bottom py-5">
     <b> <a class="navbar-brand pl-2 nav-link" href="main page">{{ __('messages.nihon') }}</a> </b>
      <button class="navbar-toggler bg-light navbar-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>

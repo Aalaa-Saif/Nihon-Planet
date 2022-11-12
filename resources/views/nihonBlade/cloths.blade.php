@@ -1,7 +1,7 @@
 @extends('layouts.main-app')
 @section('content')
     <div class="container">
-        <div class="cloths rounded my-4 border border-light">
+        <div class="cloths rounded my-4 border-top border-bottom border-dark">
             @if($posts->isNotEmpty())
                 @foreach ($posts as $cloth)
                     <div class="row">
@@ -10,7 +10,7 @@
                             <h4>{{ $cloth->name }}</h4>
                             <p>{{ $cloth->info }}</p>
                         </div>
-                    </div><hr style="background-color:white;">
+                    </div><hr style="background-color:dark;">
                 @endforeach
              @else
                  <div>

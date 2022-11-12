@@ -3,7 +3,7 @@
     <div class="container my-4">
 
         @foreach ($posts as $city)
-            <div class="row my-2 py-2 px-2 border border-light">
+            <div class="row my-2 py-2 px-2 border-bottom border-dark">
                 <div class="col-md-12">
                     <h5>{{ $city->name }}</h5>
                     <p>{{ $city->info }}</p>

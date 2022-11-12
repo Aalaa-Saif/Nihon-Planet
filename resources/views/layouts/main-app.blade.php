@@ -15,13 +15,12 @@
 <html>
 
 <body class="refresh_page">
-    <div>
-        @include('include.header')
-    </div class="clear-fix">
 
-    <div>
+    @include('include.header')
+
         @yield('content')
-    </div>
+
+    @include('include.footer')
 
 
     <!-- jQuery library -->
