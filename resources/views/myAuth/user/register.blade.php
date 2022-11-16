@@ -12,7 +12,14 @@
                 <div class="card-header text-center"><b>{{ __('messages.register') }}</b></div>
 
                 <div class="card-body">
-                    <form method="POST" autocomplete="off" action="" id="regid" enctype="multipart/form-data">
+                    <form method="POST" autocomplete="off" action="{{ route('otaku_store') }}" id="regid" enctype="multipart/form-data">
+
+                        @if (Session::get('success'))
+                        <div class="alert alert-info">
+                            {{ Session::get('success') }}
+                        </div>
+                        @endif
+
                         @csrf
 
                         <div class="row mb-3">
@@ -77,42 +84,3 @@
 </div>
 @endsection
 
-
-@section('script')
-    <script>
-        $(document).on('click','#regbtn',function(e){
-            e.preventDefault();
-
-            $('#name_error').text('');
-            $('#email_error').text('');
-            $('#password_error').text('');
-            $('#password_confirmation_error').text('');
-            $('#photo_error').text('');
-
-
-            var regData = new FormData($('#regid')[0]);
-            $.ajax({
-                method:"post",
-                enctype:"multipart/form-data",
-                url:"{{ route('otaku_store') }}",
-                data:regData,
-                processData:false,
-                contentType:false,
-                cache:false,
-                success:function(data){
-                    if(data.status==true){
-                        var div = document.getElementById('regsuccess');
-                    div.innerHTML=data.msg;
-                    $('#regsuccess').show();
-                    }
-                },
-                error:function(reject){
-                    var ajaxresponse = $.parseJSON(reject.responseText);
-                    $.each(ajaxresponse.errors,function(key,val){
-                        $("#"+key+"_error").text(val[0]);
-                    });
-                }
-            });
-        });
-    </script>
-@endsection

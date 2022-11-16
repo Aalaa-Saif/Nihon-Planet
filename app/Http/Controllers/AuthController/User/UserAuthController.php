@@ -7,6 +7,7 @@ use messages;
 use File;
 use App\Models\ad;
 use App\Models\User;
+use App\Models\VerifyUser;
 use App\Models\userpost;
 use App\Traits\photoTrait;
 use App\Models\usercomment;
@@ -119,5 +120,6 @@ class UserAuthController extends Controller
             "id"=>$request->id
         ]);
     }
+
 
 }

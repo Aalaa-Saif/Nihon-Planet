@@ -9,6 +9,18 @@
 
                 <div class="card-body o_login_back">
                     <form method="POST" autocomplete="off" action="{{ route('login_check') }}">
+                        @if (Session::get('fail'))
+                            <div class="alert alert-danger">
+                                {{ Session::get('fail') }}
+                            </div>
+                        @endif
+
+                        @if (Session::get('info'))
+                        <div class="alert alert-info">
+                            {{ Session::get('info') }}
+                        </div>
+                        @endif
+
                         @csrf
 
                             <div class="text-center">
@@ -17,7 +29,8 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-3">
-                                <input id="email" type="email" class="form-control" name="email" autofocus>
+                                <input id="email" type="email" class="form-control" name="email"
+                                value="{{ Session::get('verifiedEmail') ? Session::get('verifiedEmail') : old('email') }}" autofocus>
                                     <small class="invalid-feedback" role="alert"></small>
                             </div>
                         </div>
