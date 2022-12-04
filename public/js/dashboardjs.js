@@ -31,6 +31,15 @@ $(document).ready(function(){
         $('.bigSpaceImg').css("display","none");
     });
 
+
+    $('.click_pen').click(function(){
+        $('#changeProfile').css('display','block');
+    });
+
+    $('.close').click(function(){
+        $('#changeProfile').css("display","none");
+    });
+
 });
 
 

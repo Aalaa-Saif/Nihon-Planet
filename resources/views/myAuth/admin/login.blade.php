@@ -1,10 +1,10 @@
 @extends('layouts.main-app')
 
 @section('content')
-<div class="container my-4">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card my-5 bg-dark text-light">
+            <div class="card bg-light text-dark border border-dark">
                 <div class="card-header text-center"><b>{{ __('messages.a_login_register') }}</b></div>
 
                 <div class="card-body">

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    ////O Register form////
+    #O Register form
     "register" => "تسجيل دخول الأوتاكو",
     "name" => "الإسم",
     "email" => "البريد الالكتروني", //also for admin register form
@@ -23,7 +23,7 @@ return [
     "registerbtn" => "تسجيل",
     "photo" => "ارفع صورة",
 
-    ////O Reqister validation////
+    #O Reqister validation
     "regname" => "يجب ادخال الاسم",
     "emailrequired" => "يجب ادخال البريد الالكتروني",
     "emailunique" => "هذا البريد الالكتروني تم أخذه",
@@ -36,10 +36,10 @@ return [
     "photorequired" => "يجب رفع صورة",
     "regjsonsuccess" => "تم تسجيل عضو اوتاكو جديد بنجاح",
 
-    ////Post////
+    #Post
     "postjsonsuccess" => "تم اضافة منشور بنجاح",
 
-    ////Navebar////
+    #Navebar
     "nihon" => "اليابان",
     "lang" => "اللغة",
     "food" => "الأطعمة",
@@ -50,12 +50,12 @@ return [
     "posts" => "المنشورات",
     "search" => "بحث",
 
-    ////
+    #
     "o_logout" => "تسجيل الخروج",
     "o_login" => "تسجيل الدخول",
     "o_registerbtn" => "أو انشاء مستخدم جديد",
 
-    ////O Register
+    #O Register
     "a_login_register" => "دخول الأدمن",
     "a_login" => "تسجيل الدخول",
 
@@ -67,4 +67,6 @@ return [
     "postWrite" => "اكتب هنا ما يدور في رأيك",
     "clickHere" => "اضغط هنا للتعليق",
     "adminAdvertisement" => "إعلان من الأدمن:",
+
+    "userUpdateProfileSuccessfully" => "تم تحديث البيانات بنجاح",
 ];

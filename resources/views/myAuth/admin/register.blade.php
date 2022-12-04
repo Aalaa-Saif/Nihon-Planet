@@ -8,7 +8,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card border-dark">
                 <div class="card-header text-center"><b>Admin Register</b></div>
 
                 <div class="card-body">
@@ -42,10 +42,10 @@
                             </div>
                         </div>
 
-                        <div class="row-md-3">
+                        <div class="row">
                             <label for="photo" class="col-md-4 col-form-label text-md-end">{{ __('messages.photo') }}</label>
                             <div class="col-md-6">
-                                <input id="photo" type="file" class="form-control" name="photo">
+                                <input id="photo" type="file" class="form-control mb-1" name="photo">
                                 <small id="photo_error" class="small-text text-danger font-weight-bold" role="alert"></small>
                             </div>
 

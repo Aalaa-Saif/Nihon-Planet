@@ -2,13 +2,53 @@
 
 @section('content')
 <div class="container my-4">
+    <div id="changeProfile" class="changeProfile">
 
-            <div class="card-body">
+        <form method="POST" action="" id="profile_update_id" class="div_reload" enctype="multipart/form-data">
+            @csrf
+            <div id="success_msg" class='alert alert-info mx-5 text-center' style="display: none;">
+            </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-center">User Name</label>
+
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="name" value="{{ $user->name }}" autofocus>
+                            <small id="name_ar_error" class="small-text text-danger font-weight-bold" role="alert"></small>
+                    </div>
+                </div>
+                <input type="text" class="form-control" name="id" style="display:none;" value="{{ $user->id }}" reload_id="{{ $user->id }}">
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-center">User Photo</label>
+
+                        <img class="img-fluid ml-3" style="width:100px; height:100px" src="{{asset('img/userimg/'.$user->photo)}}">
+
+                        <div class="col-md-5 mt-5">
+                            <input type="file" class="form-control mt-2" name="photo">
+                                <small class="small-text text-danger font-weight-bold" role="alert"></small>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 offset-md-3">
+                        <button id="profile_update_btn" class="btn btn-primary">
+                            Update
+                        </button>
+                    </div>
+                </div>
+        </form>
+        <button class="close text-light profile_close" type="button">
+            <span>&#8594</span>
+        </button>
+
+    </div>
+
+            <div class="card-body img_name reload">
                 <img src="{{ asset('img/userimg/'.$user->photo) }}" style="width: 200px; height:200px;" class='rounded-circle img-fluid mx-auto d-block border border-dark'>
                 <div class="text-center my-2">
                     <h3>{{$user->name }}</h3>
                 </div>
             </div>
+            <img src="{{ asset('img/edit.png') }}" style="width:15px; height:15px;" class="click_pen" alt="edit">
                 <form method="POST" action="" id="postid" enctype="multipart/form-data">
                     @csrf
                     <div class="card bg-light col-md-8 offset-md-2">
@@ -193,12 +233,9 @@
 
                 success:function(data){
                     if(data.status==true){
-
                     }
                     else {
-
                     }
-
                     $('.post_content'+data.id).remove();
                 },
                 error:function(reject){
@@ -210,6 +247,41 @@
             });
         });
     </script>
+
+    <script>
+        $(document).on('click','#profile_update_btn',function(e){
+            e.preventDefault();
+
+            var formData = new FormData($('#profile_update_id')[0]);
+
+            $.ajax({
+                method:"post",
+                enctype:"multipart/form-data",
+                url:"{{ route('profile_user_update') }}",
+                data:formData,
+                processData:false,
+                contentType:false,
+                cache:false,
+                success:function(data){
+                    if(data.status==true){
+                        var div =  document.getElementById('success_msg');
+                        div.innerHTML=data.msg;
+                        $('#success_msg').show();
+                        setTimeout( function() {
+                            $(".reload").load(location.href + " .reload");
+                        }, 800 );
+                        setTimeout( function() {
+                            $(".div_reload").load(location.href + " .div_reload");
+                         }, 2000 );
+                    }
+                },
+                error:function(reject){
+
+                }
+            });
+        });
+
+        </script>
 @endsection
 
 

@@ -109,6 +109,31 @@
 .form_comment button{
     margin-left: 920px;
 }
+
+
+.changeProfile{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(243, 234, 234); /* Black w/ opacity */
+}
+
+.changeProfile {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+
+.click_pen{
+    cursor: pointer;
+    margin-left: 700px;
+    margin-top: -500px;
+}
+
 @media only screen and (max-width: 768px){
     .close span{
         position: absolute;
@@ -131,5 +156,11 @@
 
     .card-footer p{
         padding-left: 210px;
+    }
+
+    .click_pen{
+        cursor: pointer;
+        margin-left: 400px;
+        margin-top: -500px;
     }
 }

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    ////Register form////
+    #Register form
     "register" => "Register for Otaku",
     "name" => "Name",
     "email" => "Email", //also for admin register form
@@ -23,7 +23,7 @@ return [
     "registerbtn" => "Register",
     "photo" => "Upload Photo",
 
-    ////Register validation////
+    #Register validation
     "regname" => "Must Enter the Name",
     "emailrequired" => "Must enter Email",
     "emailunique" => "This Email has been taken",
@@ -37,10 +37,10 @@ return [
 
     //"dir" =>"ltr",
 
-    //Post////
+    #Post
     "postjsonsuccess" => "A new post added seccessfully",
 
-    ////Navbar////
+    #Navbar
     "nihon" => "Nihon",
     "lang" => "Language",
     "food" => "Foods",
@@ -54,7 +54,7 @@ return [
     "posts" => "posts",
     "search" => "Search",
 
-    ////O Register
+    #O Register
     "a_login_register" =>"Admin Login",
     "a_login" => "Login",
 
@@ -66,4 +66,6 @@ return [
     "postWrite" => "Write here what's in your mind",
     "clickHere" => "Click here to comment",
     "adminAdvertisement" => "Advertisement from Admin:",
+
+    "userUpdateProfileSuccessfully" => "Update the Data done Seccessfully",
 ];

@@ -20,7 +20,7 @@
 
 
 
-<div class="container rrr">
+<div class="container reload">
     <div id="sidebar-id" class="sidebar border-right border-dark">
 
 
@@ -36,7 +36,7 @@
         </div>
 
         <div id="changeProfile" class="changeProfile">
-            <form method="POST" action="" class="fff" id="profile_update_id" enctype="multipart/form-data">
+            <form method="POST" action="" id="profile_update_id" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group row">
@@ -168,30 +168,30 @@
 
     <script>
 
-$(document).on('click','#profile_update_btn',function(e){
-    e.preventDefault();
+    $(document).on('click','#profile_update_btn',function(e){
+        e.preventDefault();
 
-    var formData = new FormData($('#profile_update_id')[0]);
-    $.ajax({
-        method:"post",
-        enctype:"multipart/form-data",
-        url:"{{ route('admin_update_profile') }}",
-        data:formData,
-        processData:false,
-        contentType:false,
-        cache:false,
-        success:function(data){
-            if(data.status==true){
-                setTimeout( function() {
-                    $(".rrr").load(location.href);
-                 }, 800 );
+        var formData = new FormData($('#profile_update_id')[0]);
+        $.ajax({
+            method:"post",
+            enctype:"multipart/form-data",
+            url:"{{ route('admin_update_profile') }}",
+            data:formData,
+            processData:false,
+            contentType:false,
+            cache:false,
+            success:function(data){
+                if(data.status==true){
+                    setTimeout( function() {
+                        $(".reload").load(location.href);
+                    }, 800 );
+                }
+            },
+            error:function(reject){
+
             }
-        },
-        error:function(reject){
-
-        }
+        });
     });
-});
 
     </script>
 

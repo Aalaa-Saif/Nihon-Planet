@@ -38,7 +38,7 @@ class AdvertisementController extends Controller
     }
 
 
-    
+
     public function edit(Request $request){
         $admin = Auth::guard('admin')->user();
         $ad = ad::find($request->id);
@@ -112,6 +112,4 @@ class AdvertisementController extends Controller
        $all= ad::select('id','text','media')->get();
        return view('admindashboard.advertisement.ad',compact('all'),['admin'=>$admin]);
     }
-
-
 }

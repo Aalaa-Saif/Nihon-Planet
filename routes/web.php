@@ -164,7 +164,7 @@ Route::group(['namespace' => 'AuthController'], function() {
                 Route::post('post store',[UserAuthController::class,'post_store'])->name('post_store');
                 Route::post('comment store',[UserAuthController::class,'comment_store'])->name('comment_store');
                 Route::post('post delete',[UserAuthController::class,'delete'])->name('post_delete');
-                Route::post('profile update',[UserAuthController::class,'updateProfilePhoto'])->name('profile_photo_update');
+                Route::post('profile update',[UserAuthController::class,'updateUserProfile'])->name('profile_user_update');
 
             });
 

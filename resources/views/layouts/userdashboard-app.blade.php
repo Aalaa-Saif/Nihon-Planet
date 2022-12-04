@@ -15,10 +15,9 @@
 
 <body class="body refresh_page">
 
+
     @include('include.userdashboard')
     @yield('content')
-
-
 
 
 

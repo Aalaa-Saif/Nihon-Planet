@@ -8,7 +8,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card bg-dark text-light">
+            <div class="card bg-light text-dark border-dark">
                 <div class="card-header text-center"><b>{{ __('messages.register') }}</b></div>
 
                 <div class="card-body">
