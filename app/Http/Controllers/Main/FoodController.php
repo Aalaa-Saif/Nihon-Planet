@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Main;
 
 use File;
+use App\Models\Food;
 use LaravelLocalization;
-use App\Models\city;
-use App\Models\food;
-use App\Models\nihon;
-use App\Models\cityimg;
 use App\Traits\photoTrait;
 use Illuminate\Http\Request;
 use App\Http\Requests\adminRequest;
@@ -34,14 +31,14 @@ class FoodController extends Controller
 
     public function getFood(){
         //$gf = food::all();
-        $gf = food::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')->get();
+        $gf = Food::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')->get();
         return response()->json(["gf"=>$gf]);
     }
 
     public function food(Request $request){
 
         $search = $request->input('search');
-        $posts = food::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')
+        $posts = Food::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')
         ->where('name_en', 'LIKE', "%{$search}%")
         ->orWhere('info_en', 'LIKE', "%{$search}%")
         ->orWhere('name_ar', 'LIKE', "%{$search}%")
@@ -62,7 +59,7 @@ class FoodController extends Controller
 
         $file_name = $this->savephoto($request->photo,'img/food');
 
-        food::create([
+        Food::create([
             "name_ar" => $request->name_ar,
             "info_ar" => $request->info_ar,
             "name_en" => $request->name_en,
@@ -79,7 +76,7 @@ class FoodController extends Controller
 
     public function edit(Request $request){
         $admin = Auth::guard('admin')->user();
-        $food_edit = food::find($request->food_id);
+        $food_edit = Food::find($request->food_id);
         if(!$food_edit)
         return response()->json([
             "status"=>false,
@@ -87,12 +84,12 @@ class FoodController extends Controller
         ]);
 
         //select from DB
-        $food_edit = food::select('id','name_ar','info_ar','name_en','info_en','photo')->find($request->food_id);
+        $food_edit = Food::select('id','name_ar','info_ar','name_en','info_en','photo')->find($request->food_id);
         return view('admindashboard.food.edit',compact('food_edit'),['admin'=>$admin]);
     }
 
     public function update(Request $request){
-        $food_update = food::find($request->id);
+        $food_update = Food::find($request->id);
         if(!$food_update)
         return response()->json([
             "status"=>false,
@@ -128,7 +125,7 @@ class FoodController extends Controller
     }
 
     public function delete(Request $request){
-        $food_delete = food::find($request->id);
+        $food_delete = Food::find($request->id);
         if (!$food_delete)
         return response()->json([
             "status"=>false,
@@ -150,7 +147,7 @@ class FoodController extends Controller
 
     public function foodAll(){
         $admin = Auth::guard('admin')->user();
-       $all= food::select('id','name_ar','info_ar','name_en','info_en','photo')->get();
+       $all= Food::select('id','name_ar','info_ar','name_en','info_en','photo')->get();
        return view('admindashboard.food.food',compact('all'),['admin'=>$admin]);
     }
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\AuthController\Admin;
 
 use File;
-use App\Models\admin;
+use App\Models\Admin;
 use App\Traits\photoTrait;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,23 +14,23 @@ class AdminAuthController extends Controller
 {
     use photoTrait;
 
-    //Dashboard of the Admin
-    public function admin_dashboard(admin $adm){
+    #Dashboard of the Admin
+    public function admin_dashboard(Admin $adm){
         $admin = Auth::guard('admin')->user();
        // Auth::guard('admin')->loginUsingId(1);
         return view('layouts.admindashboard-app',['admin'=>$admin]);
     }
 
-    // update profile
+    # update profile
     public function update(Request $request){
-        $profile_update = admin::find($request->id);
+        $profile_update = Admin::find($request->id);
         if(!$profile_update)
         return response()->json([
             "status"=>false,
             "msg"=>"ID not Found"
         ]);
 
-         //update
+         #update
          if($request->has('photo')){
             $path = public_path('/img/adminimg/'.$profile_update->photo);
             if(File::exists($path)){

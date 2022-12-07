@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class cityimg extends Model
+class Cityimg extends Model
 {
     use HasFactory;
 
@@ -26,7 +26,7 @@ class cityimg extends Model
 
     public function multiImgs()
     {
-        return $this->belongsTo('App\Models\city');
+        return $this->belongsTo('App\Models\City');
     }
 }
 

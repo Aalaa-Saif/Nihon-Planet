@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\AuthController\Admin;
 
-use App\Models\admin;
+use App\Models\Admin;
 use App\Traits\photoTrait;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,14 +18,13 @@ class AdminRegisterController extends Controller
     }
 
 
-
     // Register An Admin
     public function store(Request $request){
         //validation
 
         $file_name = $this->savephoto($request->photo,'img/adminimg');
 
-        admin::create([
+        Admin::create([
             "name" => $request->name,
             "email" =>$request->email,
             "password" => Hash::make($request->password),

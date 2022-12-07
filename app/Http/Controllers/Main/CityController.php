@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Main;
 
 use File;
-use App\Models\city;
-use App\Models\cityimg;
+use App\Models\City;
+use App\Models\Cityimg;
 use LaravelLocalization;
 use Illuminate\Http\Request;
 use App\Http\Requests\adminRequest;
@@ -25,7 +25,7 @@ class CityController extends Controller
 
     public function city(Request $request){
         $search = $request->input('search');
-        $posts = city::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info')->orderBy('created_at','ASC')
+        $posts = City::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info')->orderBy('created_at','ASC')
         ->where('name_en', 'LIKE', "%{$search}%")
         ->orWhere('info_en', 'LIKE', "%{$search}%")
         ->orWhere('name_ar', 'LIKE', "%{$search}%")
@@ -40,7 +40,7 @@ class CityController extends Controller
     public function store(Request $request){
         //validation
 
-        $new_city = city::create([
+        $new_city = City::create([
             "name_ar" => $request->name_ar,
             "info_ar" => $request->info_ar,
             "name_en" => $request->name_en,
@@ -54,7 +54,7 @@ class CityController extends Controller
                 $path = 'img/city';
                 $img ->move($path,$img_name);
 
-                cityimg::create([
+                Cityimg::create([
                     'city_id' => $new_city->id,
                     'image' => $img_name
                 ]);
@@ -69,7 +69,7 @@ class CityController extends Controller
 
     public function edit(Request $request){
         $admin = Auth::guard('admin')->user();
-        $city_edit = city::find($request->city_id);
+        $city_edit = City::find($request->city_id);
         if(!$city_edit)
         return response()->json([
             "status"=>false,
@@ -77,12 +77,12 @@ class CityController extends Controller
         ]);
 
         //select from DB
-        $city_edit = city::all()->find($request->city_id);
+        $city_edit = City::all()->find($request->city_id);
         return view('admindashboard.city.edit',compact('city_edit'),['admin'=>$admin]);
     }
 
     public function update(Request $request){
-        $city = city::find($request->id);
+        $city = City::find($request->id);
         $input = $request->all();
         if(!$city)
         return response()->json([
@@ -98,7 +98,7 @@ class CityController extends Controller
                 $path = 'img/city';
                 $img ->move($path,$img_name);
 
-                cityimg::create([
+                Cityimg::create([
                     'city_id' => $city->id,
                     'image' => $img_name
                 ]);
@@ -114,7 +114,7 @@ class CityController extends Controller
     }
 
     public function delete(Request $request){
-        $city_delete = city::find($request->id);
+        $city_delete = City::find($request->id);
         if (!$city_delete)
         return response()->json([
             "status"=>false,
@@ -140,7 +140,7 @@ class CityController extends Controller
     }
 
     public function city_deleteimg(Request $request){
-        $cityimg = cityimg::find($request->id);
+        $cityimg = Cityimg::find($request->id);
         if(!$cityimg)
         return response()->json([
             "status"=>false,
@@ -168,7 +168,7 @@ class CityController extends Controller
 
     public function cityAll(){
        $admin = Auth::guard('admin')->user();
-       $all= city::all();
+       $all= City::all();
        return view('admindashboard.city.city',compact('all'),['admin'=>$admin]);
     }
 

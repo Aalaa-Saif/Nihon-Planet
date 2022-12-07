@@ -28,8 +28,6 @@ class photoRequest extends FormRequest
             'info_ar' => 'required|max:40',
             'name_en' => 'required|max:40',
             'info_en' => 'required|max:40',
-
-
         ];
     }
 

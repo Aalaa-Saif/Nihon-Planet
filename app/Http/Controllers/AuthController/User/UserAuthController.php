@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\AuthController\User;
 
+use File;
 use Session;
 use messages;
-use File;
-use App\Models\ad;
 use App\Models\User;
+use App\Models\Userpost;
 use App\Models\VerifyUser;
-use App\Models\userpost;
 use App\Traits\photoTrait;
-use App\Models\usercomment;
-use App\Models\userpostimg;
+use App\Models\Usercomment;
+use App\Models\Userpostimg;
 use Illuminate\Http\Request;
 use App\Http\Requests\authRequest;
 use App\Http\Controllers\Controller;
@@ -28,7 +27,7 @@ class UserAuthController extends Controller
         //validator
         $conn_id = Auth::user()->id;
         //insert
-        $new_post = userpost::create([
+        $new_post = Userpost::create([
             'user_id' => $conn_id,
             'text' => $request->text,
         ]);
@@ -40,7 +39,7 @@ class UserAuthController extends Controller
                 $path = 'img/userpostimg';
                 $img ->move($path,$img_name);
 
-                userpostimg::create([
+                Userpostimg::create([
                     'userpost_id' => $new_post->id,
                     'image' => $img_name
                 ]);
@@ -59,7 +58,7 @@ class UserAuthController extends Controller
          //validator
          $comment_id = Auth::user()->id;
         //$find = userpost::with('user')->find($request->id);
-            usercomment::create([
+            Usercomment::create([
                 'user_id'=>$comment_id,
                 'userpost_id' => $request->id,
                 'comment' => $request->comment,
@@ -77,7 +76,7 @@ class UserAuthController extends Controller
     public function profile(Request $request){
         $user = Auth::user();
         $search = $request->input('search');
-        $pos = userpost::orderBy('created_at','DESC')->where('user_id',Auth::user()->id);
+        $pos = Userpost::orderBy('created_at','DESC')->where('user_id',Auth::user()->id);
         $posts = $pos
         ->where('text', 'LIKE', "%{$search}%")
         ->get();
@@ -90,18 +89,18 @@ class UserAuthController extends Controller
         $user = Auth::user();
         $search = $request->input('search');
         //Fetch Advertisement
-       $ad = ad::all();
+       $ad = Ad::all();
 
                         // 'user' is the name of Relationship in userpost Modal
         //$posts = userpost::with('comments.user')->orderBy('created_at','DESC')->get();
-        $posts = userpost::with('comments.user')->orderBy('created_at','DESC')
+        $posts = Userpost::with('comments.user')->orderBy('created_at','DESC')
         ->where('text', 'LIKE', "%{$search}%")
         ->get();
         return view('userdashboard.post',compact('posts','ad'),['user'=> $user]);
     }
 
     public function delete(Request $request){
-        $delete = userpost::find($request->id);
+        $delete = Userpost::find($request->id);
         if (!$delete)
         return response()->json([
             "status"=>false,

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use Auth;
-use App\Models\nihon;
+use App\Models\Nihon;
 use LaravelLocalization;
 use Illuminate\Http\Request;
 use App\Http\Requests\adminRequest;
@@ -13,12 +13,12 @@ class NihonController extends Controller
 {
     #################### Blade ####################
     public function nihon(){
-        $nihon = nihon::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info')->orderBy('created_at','ASC')->get();
+        $nihon = Nihon::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info')->orderBy('created_at','ASC')->get();
         return view('nihonBlade.nihon',compact('nihon'));
     }
 
     public function getNihon(){
-        $gn = nihon::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info')->orderBy('created_at','ASC')->get();
+        $gn = Nihon::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info')->orderBy('created_at','ASC')->get();
         return response()->json(["gn"=>$gn]);
     }
 
@@ -28,14 +28,14 @@ class NihonController extends Controller
 
     public function nihonAll(){
         $admin = Auth::guard('admin')->user();
-        $all = nihon::all();
+        $all = Nihon::all();
         return view('admindashboard.nihon.nihon',compact('all'),['admin'=>$admin]);
     }
 
     public function nihonStore(adminRequest $request){
         //validation
 
-        nihon::create([
+        Nihon::create([
             "name_ar" => $request->name_ar,
             "info_ar" => $request->info_ar,
             "name_en" => $request->name_en,
@@ -57,7 +57,7 @@ class NihonController extends Controller
 
     public function edit(Request $request){
         $admin = Auth::guard('admin')->user();
-        $nihon = nihon::find($request->id);
+        $nihon = Nihon::find($request->id);
         if(!$nihon)
         return response()->json([
             "status"=>false,
@@ -65,12 +65,12 @@ class NihonController extends Controller
         ]);
 
         //select from DB
-        $nihon = nihon::select('id','name_ar','info_ar','name_en','info_en')->find($request->id);
+        $nihon = Nihon::select('id','name_ar','info_ar','name_en','info_en')->find($request->id);
         return view('admindashboard.nihon.edit',compact('nihon'),['admin'=>$admin]);
     }
 
     public function update(Request $request){
-        $nihon = nihon::find($request->id);
+        $nihon = Nihon::find($request->id);
         if(!$nihon)
         return response()->json([
             "status"=>false,
@@ -91,7 +91,7 @@ class NihonController extends Controller
     }
 
     public function delete(Request $request){
-        $nihon = nihon::find($request->id);
+        $nihon = Nihon::find($request->id);
         if (!$nihon)
         return response()->json([
             "status"=>false,

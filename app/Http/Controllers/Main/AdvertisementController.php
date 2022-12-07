@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Main;
 
-use App\Models\ad;
+use App\Models\Ad;
 use App\Traits\photoTrait;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -26,7 +26,7 @@ class AdvertisementController extends Controller
         //validation
 
         $file_name = $this->savephoto($request->media,'img/ad');
-        ad::create([
+        Ad::create([
             'text'=>$request->text,
             'media'=>$file_name,
         ]);
@@ -41,7 +41,7 @@ class AdvertisementController extends Controller
 
     public function edit(Request $request){
         $admin = Auth::guard('admin')->user();
-        $ad = ad::find($request->id);
+        $ad = Ad::find($request->id);
         if(!$ad)
         return response()->json([
             "status"=>false,
@@ -49,12 +49,12 @@ class AdvertisementController extends Controller
         ]);
 
         //select from DB
-        $ad = ad::select('id','text','media')->find($request->id);
+        $ad = Ad::select('id','text','media')->find($request->id);
         return view('admindashboard.advertisement.edit',compact('ad'),['admin'=>$admin]);
     }
 
     public function update(Request $request){
-        $ad = ad::find($request->id);
+        $ad = Ad::find($request->id);
         if(!$ad)
         return response()->json([
             "status"=>false,
@@ -87,7 +87,7 @@ class AdvertisementController extends Controller
     }
 
     public function delete(Request $request){
-        $ad = ad::find($request->id);
+        $ad = Ad::find($request->id);
         if (!$ad)
         return response()->json([
             "status"=>false,
@@ -109,7 +109,7 @@ class AdvertisementController extends Controller
 
     public function adAll(){
         $admin = Auth::guard('admin')->user();
-       $all= ad::select('id','text','media')->get();
+       $all= Ad::select('id','text','media')->get();
        return view('admindashboard.advertisement.ad',compact('all'),['admin'=>$admin]);
     }
 }

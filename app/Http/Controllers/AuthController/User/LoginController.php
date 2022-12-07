@@ -9,15 +9,15 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
 
-    //Blade User Login
+    #Blade User Login
     public function login(){
         return view('myAuth.user.login');
     }
 
 
-    //Login Check
+    #Login Check
     public function login_check(Request $request){
-        //validation
+        #validation
 
         $credentials = $request->only('email', 'password');
 

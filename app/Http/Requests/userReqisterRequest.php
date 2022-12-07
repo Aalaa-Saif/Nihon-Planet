@@ -29,8 +29,6 @@ class userReqisterRequest extends FormRequest
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required|same:password|min:6',
             'photo' => 'required',
-
-
         ];
     }
 

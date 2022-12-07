@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\city;
+use App\Models\City;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -16,7 +16,7 @@ class CreateCityimgsTable extends Migration
     {
         Schema::create('cityimgs', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(city::class);
+            $table->foreignIdFor(City::class);
             $table->string('image');
             $table->timestamps();
         });

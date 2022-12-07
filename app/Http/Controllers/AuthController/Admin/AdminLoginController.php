@@ -13,7 +13,6 @@ class AdminLoginController extends Controller
         return view('myAuth.admin.login');
     }
 
-
     public function admin_check(Request $request){
         //validation
 

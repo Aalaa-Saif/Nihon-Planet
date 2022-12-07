@@ -14,4 +14,5 @@ class LogoutController extends Controller
         Auth::logout();
         return redirect()->route('otaku_login');
     }
+
 }

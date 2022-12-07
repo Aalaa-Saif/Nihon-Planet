@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use File;
-use App\Models\cloth;
+use App\Models\Cloth;
 use LaravelLocalization;
 use App\Traits\photoTrait;
 use Illuminate\Http\Request;
@@ -23,13 +23,13 @@ class ClothsController extends Controller
     }
 
     public function getCloths(){
-        $posts = cloth::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')->get();
+        $posts = Cloth::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')->get();
        return response()->json(["posts"=>$posts]);
     }
 
     public function cloths(Request $request){
         $search = $request->input('search');
-        $posts = cloth::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')
+        $posts = Cloth::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','info_'.LaravelLocalization::getCurrentLocale().' as info','photo')->orderBy('created_at','ASC')
         ->where('name_en', 'LIKE', "%{$search}%")
         ->orWhere('info_en', 'LIKE', "%{$search}%")
         ->orWhere('name_ar', 'LIKE', "%{$search}%")
@@ -51,7 +51,7 @@ class ClothsController extends Controller
 
         $file_name = $this->savephoto($request->photo,'img/cloths');
 
-        cloth::create([
+        Cloth::create([
             "name_ar" => $request->name_ar,
             "info_ar" => $request->info_ar,
             "name_en" => $request->name_en,
@@ -68,7 +68,7 @@ class ClothsController extends Controller
 
     public function edit(Request $request){
         $admin = Auth::guard('admin')->user();
-        $cloth_edit = cloth::find($request->cloths_id);
+        $cloth_edit = Cloth::find($request->cloths_id);
         if(!$cloth_edit)
         return response()->json([
             "status"=>false,
@@ -76,12 +76,12 @@ class ClothsController extends Controller
         ]);
 
         //select from DB
-        $cloth_edit = cloth::select('id','name_ar','info_ar','name_en','info_en','photo')->find($request->cloths_id);
+        $cloth_edit = Cloth::select('id','name_ar','info_ar','name_en','info_en','photo')->find($request->cloths_id);
         return view('admindashboard.cloths.edit',compact('cloth_edit'),['admin'=>$admin]);
     }
 
     public function update(Request $request){
-        $cloth_update = cloth::find($request->id);
+        $cloth_update = Cloth::find($request->id);
         if(!$cloth_update)
         return response()->json([
             "status"=>false,
@@ -117,7 +117,7 @@ class ClothsController extends Controller
     }
 
     public function delete(Request $request){
-        $cloth_delete = cloth::find($request->id);
+        $cloth_delete = Cloth::find($request->id);
         if (!$cloth_delete)
         return response()->json([
             "status"=>false,
@@ -139,7 +139,7 @@ class ClothsController extends Controller
 
     public function clothsAll(){
         $admin = Auth::guard('admin')->user();
-       $all= cloth::select('id','name_ar','info_ar','name_en','info_en','photo')->get();
+       $all= Cloth::select('id','name_ar','info_ar','name_en','info_en','photo')->get();
        return view('admindashboard.cloths.cloths',compact('all'),['admin'=>$admin]);
     }
 

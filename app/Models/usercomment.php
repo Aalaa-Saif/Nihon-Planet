@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class usercomment extends Model
+class Usercomment extends Model
 {
     use HasFactory;
 
@@ -26,7 +26,7 @@ class usercomment extends Model
     ];
 
     public function user_comment(){
-        return $this->belongsTo('App\Models\userpost');
+        return $this->belongsTo('App\Models\Userpost');
     }
 
     public function user(){

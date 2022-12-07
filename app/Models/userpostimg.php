@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class userpostimg extends Model
+class Userpostimg extends Model
 {
     use HasFactory;
 
@@ -25,6 +25,6 @@ class userpostimg extends Model
     ];
 
     public function user_post(){
-        return $this->belongsTo('App\Models\userpost');
+        return $this->belongsTo('App\Models\Userpost');
     }
 }

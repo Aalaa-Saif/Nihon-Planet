@@ -14,13 +14,13 @@ class RegisterController extends Controller
 {
     use photoTrait;
 
-    // Blade Register User
+    #Blade Register User
     public function register(){
         return view('myAuth.user.register');
     }
 
     public function store(userReqisterRequest $request){
-        //validation
+        #validation
 
         $file_name = $this->savephoto($request->photo,'img/userimg');
 

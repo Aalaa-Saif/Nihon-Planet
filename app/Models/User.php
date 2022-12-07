@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'photo',
-        'email_verified'
+        'email_verified',
     ];
 
     /**
@@ -45,11 +45,11 @@ class User extends Authenticatable
     ];*/
 
     public function userposts(){
-        return $this->hasMany('App\Models\userpost');
+        return $this->hasMany('App\Models\Userpost');
     }
 
     public function usercommentIDs(){
-        return $this->hasMany('App\Models\usercomment');
+        return $this->hasMany('App\Models\Usercomment');
     }
 
 

@@ -31,7 +31,8 @@ class adminRequest extends FormRequest
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return[
             'name_ar.required' => "Must write a Title in Arabic",
             'name_ar.max'=>'Max Arabic letters is 40',

@@ -21,6 +21,7 @@ class IsUserVerifyEmail
             Auth::guard('web')->logout();
             return redirect()->route('otaku_login')->with('fail','You need to confirm your email')->withInput();
         }
+
         return $next($request);
     }
 }

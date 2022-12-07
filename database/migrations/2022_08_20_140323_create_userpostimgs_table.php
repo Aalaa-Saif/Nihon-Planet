@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\userpost;
+use App\Models\Userpost;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -16,7 +16,7 @@ class CreateUserpostimgsTable extends Migration
     {
         Schema::create('userpostimgs', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(userpost::class);
+            $table->foreignIdFor(Userpost::class);
             $table->string('image');
             $table->timestamps();
         });

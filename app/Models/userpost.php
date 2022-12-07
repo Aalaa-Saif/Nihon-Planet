@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class userpost extends Model
+class Userpost extends Model
 {
     use HasFactory;
 
@@ -29,11 +29,11 @@ class userpost extends Model
     }
 
     public function userpostimgs(){
-        return $this->hasMany('App\Models\userpostimg');
+        return $this->hasMany('App\Models\Userpostimg');
     }
 
     public function comments(){
-        return $this->hasMany('App\Models\usercomment')->orderBy('created_at','ASC');
+        return $this->hasMany('App\Models\Usercomment')->orderBy('created_at','ASC');
     }
 
 }
