@@ -31,7 +31,7 @@
             <a class="nav-link" href="otaku login">{{ __('messages.o_login') }}</a>
           </li>
        </ul>
-       <form class="form-inline my-2 my-lg-0" autocomplete="off" action="" method="GET" role="search">
+       <form class="form-inline my-2 my-lg-0" action="" method="GET" role="search">
         <a class="nav-link" href="admin login">{{ __('messages.a_login_register') }}</a>
          <input class="form-control mr-sm-2" type="search" placeholder="{{ __('messages.search') }}" name="search" aria-label="Search">
          <button class="btn btn-dark border my-2 my-sm-0" type="submit">{{ __('messages.search') }}</button>

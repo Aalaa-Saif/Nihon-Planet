@@ -81,7 +81,7 @@
                             <div class="row">
                                 <div class="col-md-8 mb-2">
                                         <img class="float-left img-fluid border border-dark rounded-circle" src="{{ asset('img/userimg/'.$user->photo) }}" style="width:50px; height:50px;">
-                                        <b><h4 class="my-2 userfloat">{{ $user->name }}</h4></b>
+                                        <b><h4 class="my-2 userfloatname">{{ $user->name }}</h4></b>
                                 </div>
                                 <div class="col-md-1 offset-md-3">
                                     <img src="{{ asset('img/options.png') }}"style="width:15px; height:15px;" class="dropdown-toggle" href="#" id="drop2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -129,7 +129,7 @@
 
                                         <div class="row">
                                             <div class="col-md-6 offset-md-3 comment_space">
-                                                <div class="scroll_post rounded">
+                                                <div class="scroll_post">
                                                     @foreach ($post->comments as $comm)
                                                     <img class="float-left img-fluid border border-dark rounded-circle" src="{{ asset('img/userimg/'.$comm->user->photo) }}" style="width:40px; height:40px;">
                                                     <b><h5 class="my-2 userfloat text-dark">{{ $comm->user->name }}</h5></b>
@@ -205,8 +205,9 @@
                         setTimeout( function() {
                             $(".reload_div-"+commentId).load(location.href + " .reload_div-"+commentId);
                          }, 400 );
-                    }
 
+                        scrollTop: $(".comment_p").offset().top;
+                    }
                 },
                 error:function(reject){
                     var ajaxresponse = $.parseJSON(reject.responseText);
@@ -281,7 +282,7 @@
             });
         });
 
-        </script>
+    </script>
 @endsection
 
 

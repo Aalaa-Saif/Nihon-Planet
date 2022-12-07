@@ -51,7 +51,7 @@ return [
     "o_registerbtn" => "or Create new User",
 
     "profile" => "Profile",
-    "posts" => "posts",
+    "posts" => "Posts",
     "search" => "Search",
 
     #O Register

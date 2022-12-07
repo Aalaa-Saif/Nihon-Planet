@@ -28,7 +28,7 @@
                             <div class="row">
                                 <div class="col-md-8 mb-2">
                                     <img src="{{ asset('img/userimg/'.$post->user->photo) }}" class="float-left border border-dark rounded-circle" style="width:50px; height:50px;">
-                                    <b><h4 class="userfloat mt-2">{{ $post->user->name }}</h4></b>
+                                    <b><h4 class="mt-2 userfloatname">{{ $post->user->name }}</h4></b>
 
                                 </div>
                             </div>

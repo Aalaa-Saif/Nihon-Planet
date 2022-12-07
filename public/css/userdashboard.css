@@ -37,6 +37,9 @@
 .userfloat{
     padding-left: 50px;
 }
+.userfloatname{
+    margin-left: 60px;
+}
 
 
 .bigSpace{
@@ -67,6 +70,7 @@
 
 .sizefontpost{
     font-size: 25px;
+    margin-left: 60px;
 }
 
 .comment_p{

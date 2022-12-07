@@ -108,9 +108,11 @@ nav a{
 #footer{
     background-image: radial-gradient(rgb(248, 203, 105),rgb(199, 119, 143),rgb(72, 59, 107));
 }
+
 .footer_font{
     font-size: 20px;
 }
+
 
 @media only screen and (max-width: 700px){
     .bigSpace img{
